@@ -33,10 +33,22 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
  * Interface methods
  */
 
+static GStreamerBackend *_sharedGStreamerBackend = nil;
+
++(GStreamerBackend *)sharedInstance {
+  @synchronized([GStreamerBackend class]) {
+    if (!_sharedGStreamerBackend)
+      _sharedGStreamerBackend = [[self alloc] init];
+    return _sharedGStreamerBackend;
+  }
+  return nil;
+}
+
 -(id) init:(id) uiDelegate
 {
-  if (self = [super init])
+  if (! _sharedGStreamerBackend)
   {
+    _sharedGStreamerBackend = [super init];
     self->ui_delegate = uiDelegate;
     
     GST_DEBUG_CATEGORY_INIT (debug_category, "tutorial-2", 0, "iOS tutorial 2");

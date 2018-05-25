@@ -38,13 +38,13 @@
 }
 
 /* Called when the Play button is pressed */
--(void) play:(id)sender
+-(void) play
 {
   [gst_backend play];
 }
 
 /* Called when the Pause button is pressed */
--(void) pause:(id)sender
+-(void) pause
 {
   [gst_backend pause];
 }
@@ -55,7 +55,6 @@
 
 -(void) gstreamerInitialized
 {
-  [gst_backend play];
   dispatch_async(dispatch_get_main_queue(), ^{
   
   });

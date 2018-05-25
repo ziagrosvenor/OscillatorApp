@@ -1,11 +1,22 @@
 import React from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight
+} from "react-native";
+
+import GStreamerBridge from "./GStreamerBridgeNativeModule";
 
 class RNHighScores extends React.Component {
+  componentDidMount() {}
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.highScoresTitle}>2048 High Scores!</Text>
+        <TouchableHighlight onPress={() => GStreamerBridge.exampleMethod()}>
+          <Text style={styles.highScoresTitle}>Play</Text>
+        </TouchableHighlight>
       </View>
     );
   }

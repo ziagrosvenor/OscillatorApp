@@ -13,4 +13,6 @@
 /* Set the pipeline to PAUSED */
 -(void) pause;
 
++(GStreamerBackend *)sharedInstance;
+
 @end
