@@ -1,13 +1,7 @@
 //  Created by react-native-create-bridge
 
-import { NativeModules } from 'react-native'
+import { NativeModules } from "react-native";
 
-const { GStreamerBridge } = NativeModules
+const { GStreamerBridge } = NativeModules;
 
-export default {
-  exampleMethod () {
-    return GStreamerBridge.exampleMethod()
-  },
-
-  EXAMPLE_CONSTANT: GStreamerBridge.EXAMPLE_CONSTANT
-}
+export default GStreamerBridge;

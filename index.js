@@ -7,19 +7,35 @@ import {
   TouchableHighlight
 } from "react-native";
 
+import styled from "styled-components/native";
+
 import GStreamerBridge from "./GStreamerBridgeNativeModule";
+import DraggableCircle from "./DraggableCircle";
 
 class RNHighScores extends React.Component {
+  state = {
+    playing: false
+  };
   componentDidMount() {}
+  togglePlaying() {
+    if (this.state.playing) {
+      GStreamerBridge.pause();
+    } else {
+      GStreamerBridge.play();
+    }
+    this.setState({ playing: !this.state.playing });
+  }
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={() => GStreamerBridge.exampleMethod()}>
-          <Text style={styles.highScoresTitle}>Play</Text>
-        </TouchableHighlight>
+        <DraggableCircle
+          onPressIn={() => this.togglePlaying()}
+          onMove={this.handleMove}
+        />
       </View>
     );
   }
+  handleMove = console.warn;
 }
 
 const styles = StyleSheet.create({

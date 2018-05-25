@@ -43,11 +43,16 @@ RCT_EXPORT_MODULE();
 
 // Export methods to a native module
 // https://facebook.github.io/react-native/docs/native-modules-ios.html
-RCT_EXPORT_METHOD(exampleMethod)
+RCT_EXPORT_METHOD(play)
 {
   [[GStreamerBackend sharedInstance] play];
+  //[self emitMessageToRN:@"EXAMPLE_EVENT" :nil];
+}
 
-  [self emitMessageToRN:@"EXAMPLE_EVENT" :nil];
+RCT_EXPORT_METHOD(pause)
+{
+  [[GStreamerBackend sharedInstance] pause];
+  //[self emitMessageToRN:@"EXAMPLE_EVENT" :nil];
 }
 
 // List all your events here
