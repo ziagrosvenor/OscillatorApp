@@ -1,0 +1,651 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		180827BB20B8A379006442AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827BA20B8A379006442AD /* AppDelegate.m */; };
+		180827BE20B8A379006442AD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827BD20B8A379006442AD /* ViewController.m */; };
+		180827C120B8A379006442AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180827BF20B8A379006442AD /* Main.storyboard */; };
+		180827C320B8A37C006442AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 180827C220B8A37C006442AD /* Assets.xcassets */; };
+		180827C620B8A37C006442AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180827C420B8A37C006442AD /* LaunchScreen.storyboard */; };
+		180827C920B8A37C006442AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827C820B8A37C006442AD /* main.m */; };
+		180827D320B8A37C006442AD /* OscillatorAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827D220B8A37C006442AD /* OscillatorAppTests.m */; };
+		180827DE20B8A37C006442AD /* OscillatorAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827DD20B8A37C006442AD /* OscillatorAppUITests.m */; };
+		180827EC20B8A44B006442AD /* GStreamerBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827EB20B8A44B006442AD /* GStreamerBackend.m */; };
+		180827F020B8A53C006442AD /* GStreamer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827EF20B8A53C006442AD /* GStreamer.framework */; };
+		180827F320B8A668006442AD /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827F220B8A668006442AD /* libiconv.2.tbd */; };
+		180827F520B8A6CE006442AD /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */; };
+		180827F720B8A71F006442AD /* gst_ios_init.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827F620B8A71F006442AD /* gst_ios_init.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		180827CF20B8A37C006442AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180827AE20B8A379006442AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 180827B520B8A379006442AD;
+			remoteInfo = OscillatorApp;
+		};
+		180827DA20B8A37C006442AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 180827AE20B8A379006442AD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 180827B520B8A379006442AD;
+			remoteInfo = OscillatorApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		180827B620B8A379006442AD /* OscillatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OscillatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		180827B920B8A379006442AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		180827BA20B8A379006442AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		180827BC20B8A379006442AD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		180827BD20B8A379006442AD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		180827C020B8A379006442AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		180827C220B8A37C006442AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		180827C520B8A37C006442AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		180827C720B8A37C006442AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		180827C820B8A37C006442AD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		180827CE20B8A37C006442AD /* OscillatorAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OscillatorAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		180827D220B8A37C006442AD /* OscillatorAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OscillatorAppTests.m; sourceTree = "<group>"; };
+		180827D420B8A37C006442AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		180827D920B8A37C006442AD /* OscillatorAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OscillatorAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		180827DD20B8A37C006442AD /* OscillatorAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OscillatorAppUITests.m; sourceTree = "<group>"; };
+		180827DF20B8A37C006442AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		180827EB20B8A44B006442AD /* GStreamerBackend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GStreamerBackend.m; sourceTree = "<group>"; };
+		180827ED20B8A494006442AD /* GStreamerBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GStreamerBackend.h; sourceTree = "<group>"; };
+		180827EF20B8A53C006442AD /* GStreamer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GStreamer.framework; sourceTree = "<group>"; };
+		180827F120B8A586006442AD /* GStreamerBackendDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GStreamerBackendDelegate.h; sourceTree = "<group>"; };
+		180827F220B8A668006442AD /* libiconv.2.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libiconv.2.tbd; sourceTree = DEVELOPER_DIR; };
+		180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libstdc++.6.0.9.tbd"; sourceTree = DEVELOPER_DIR; };
+		180827F620B8A71F006442AD /* gst_ios_init.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gst_ios_init.m; sourceTree = "<group>"; };
+		180827F820B8A762006442AD /* gst_ios_init.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gst_ios_init.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		180827B320B8A379006442AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				180827F320B8A668006442AD /* libiconv.2.tbd in Frameworks */,
+				180827F520B8A6CE006442AD /* libstdc++.6.0.9.tbd in Frameworks */,
+				180827F020B8A53C006442AD /* GStreamer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		180827CB20B8A37C006442AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		180827D620B8A37C006442AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		180827AD20B8A379006442AD = {
+			isa = PBXGroup;
+			children = (
+				180827EE20B8A4ED006442AD /* Frameworks */,
+				180827B820B8A379006442AD /* OscillatorApp */,
+				180827D120B8A37C006442AD /* OscillatorAppTests */,
+				180827DC20B8A37C006442AD /* OscillatorAppUITests */,
+				180827B720B8A379006442AD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		180827B720B8A379006442AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				180827B620B8A379006442AD /* OscillatorApp.app */,
+				180827CE20B8A37C006442AD /* OscillatorAppTests.xctest */,
+				180827D920B8A37C006442AD /* OscillatorAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		180827B820B8A379006442AD /* OscillatorApp */ = {
+			isa = PBXGroup;
+			children = (
+				180827B920B8A379006442AD /* AppDelegate.h */,
+				180827BA20B8A379006442AD /* AppDelegate.m */,
+				180827BC20B8A379006442AD /* ViewController.h */,
+				180827BD20B8A379006442AD /* ViewController.m */,
+				180827BF20B8A379006442AD /* Main.storyboard */,
+				180827C220B8A37C006442AD /* Assets.xcassets */,
+				180827C420B8A37C006442AD /* LaunchScreen.storyboard */,
+				180827C720B8A37C006442AD /* Info.plist */,
+				180827C820B8A37C006442AD /* main.m */,
+				180827EB20B8A44B006442AD /* GStreamerBackend.m */,
+				180827ED20B8A494006442AD /* GStreamerBackend.h */,
+				180827F120B8A586006442AD /* GStreamerBackendDelegate.h */,
+				180827F620B8A71F006442AD /* gst_ios_init.m */,
+				180827F820B8A762006442AD /* gst_ios_init.h */,
+			);
+			path = OscillatorApp;
+			sourceTree = "<group>";
+		};
+		180827D120B8A37C006442AD /* OscillatorAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				180827D220B8A37C006442AD /* OscillatorAppTests.m */,
+				180827D420B8A37C006442AD /* Info.plist */,
+			);
+			path = OscillatorAppTests;
+			sourceTree = "<group>";
+		};
+		180827DC20B8A37C006442AD /* OscillatorAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				180827DD20B8A37C006442AD /* OscillatorAppUITests.m */,
+				180827DF20B8A37C006442AD /* Info.plist */,
+			);
+			path = OscillatorAppUITests;
+			sourceTree = "<group>";
+		};
+		180827EE20B8A4ED006442AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */,
+				180827F220B8A668006442AD /* libiconv.2.tbd */,
+				180827EF20B8A53C006442AD /* GStreamer.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		180827B520B8A379006442AD /* OscillatorApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 180827E220B8A37C006442AD /* Build configuration list for PBXNativeTarget "OscillatorApp" */;
+			buildPhases = (
+				180827B220B8A379006442AD /* Sources */,
+				180827B320B8A379006442AD /* Frameworks */,
+				180827B420B8A379006442AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OscillatorApp;
+			productName = OscillatorApp;
+			productReference = 180827B620B8A379006442AD /* OscillatorApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		180827CD20B8A37C006442AD /* OscillatorAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 180827E520B8A37C006442AD /* Build configuration list for PBXNativeTarget "OscillatorAppTests" */;
+			buildPhases = (
+				180827CA20B8A37C006442AD /* Sources */,
+				180827CB20B8A37C006442AD /* Frameworks */,
+				180827CC20B8A37C006442AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				180827D020B8A37C006442AD /* PBXTargetDependency */,
+			);
+			name = OscillatorAppTests;
+			productName = OscillatorAppTests;
+			productReference = 180827CE20B8A37C006442AD /* OscillatorAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		180827D820B8A37C006442AD /* OscillatorAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 180827E820B8A37C006442AD /* Build configuration list for PBXNativeTarget "OscillatorAppUITests" */;
+			buildPhases = (
+				180827D520B8A37C006442AD /* Sources */,
+				180827D620B8A37C006442AD /* Frameworks */,
+				180827D720B8A37C006442AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				180827DB20B8A37C006442AD /* PBXTargetDependency */,
+			);
+			name = OscillatorAppUITests;
+			productName = OscillatorAppUITests;
+			productReference = 180827D920B8A37C006442AD /* OscillatorAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		180827AE20B8A379006442AD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = Zia;
+				TargetAttributes = {
+					180827B520B8A379006442AD = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					180827CD20B8A37C006442AD = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = 180827B520B8A379006442AD;
+					};
+					180827D820B8A37C006442AD = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = 180827B520B8A379006442AD;
+					};
+				};
+			};
+			buildConfigurationList = 180827B120B8A379006442AD /* Build configuration list for PBXProject "OscillatorApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 180827AD20B8A379006442AD;
+			productRefGroup = 180827B720B8A379006442AD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				180827B520B8A379006442AD /* OscillatorApp */,
+				180827CD20B8A37C006442AD /* OscillatorAppTests */,
+				180827D820B8A37C006442AD /* OscillatorAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		180827B420B8A379006442AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				180827C620B8A37C006442AD /* LaunchScreen.storyboard in Resources */,
+				180827C320B8A37C006442AD /* Assets.xcassets in Resources */,
+				180827C120B8A379006442AD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		180827CC20B8A37C006442AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		180827D720B8A37C006442AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		180827B220B8A379006442AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				180827BE20B8A379006442AD /* ViewController.m in Sources */,
+				180827C920B8A37C006442AD /* main.m in Sources */,
+				180827BB20B8A379006442AD /* AppDelegate.m in Sources */,
+				180827EC20B8A44B006442AD /* GStreamerBackend.m in Sources */,
+				180827F720B8A71F006442AD /* gst_ios_init.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		180827CA20B8A37C006442AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				180827D320B8A37C006442AD /* OscillatorAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		180827D520B8A37C006442AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				180827DE20B8A37C006442AD /* OscillatorAppUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		180827D020B8A37C006442AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 180827B520B8A379006442AD /* OscillatorApp */;
+			targetProxy = 180827CF20B8A37C006442AD /* PBXContainerItemProxy */;
+		};
+		180827DB20B8A37C006442AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 180827B520B8A379006442AD /* OscillatorApp */;
+			targetProxy = 180827DA20B8A37C006442AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		180827BF20B8A379006442AD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				180827C020B8A379006442AD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		180827C420B8A37C006442AD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				180827C520B8A37C006442AD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		180827E020B8A37C006442AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		180827E120B8A37C006442AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		180827E320B8A37C006442AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = OscillatorApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorApp;
+					OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+					"-ObjC",
+					"-lc++",
+					"-lresolv",
+					"-lstdc++",
+					"-framework",
+					CoreFoundation,
+					"-framework",
+					Foundation,
+					"-framework",
+					AVFoundation,
+					"-framework",
+					CoreMedia,
+					"-framework",
+					CoreVideo,
+					"-framework",
+					CoreAudio,
+					"-framework",
+					AudioToolbox,
+					"-weak_framework",
+					VideoToolbox,
+					"-framework",
+					OpenGLES,
+					"-framework",
+					AssetsLibrary,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					AssetsLibrary,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		180827E420B8A37C006442AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = OscillatorApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		180827E620B8A37C006442AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OscillatorAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OscillatorApp.app/OscillatorApp";
+			};
+			name = Debug;
+		};
+		180827E720B8A37C006442AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OscillatorAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OscillatorApp.app/OscillatorApp";
+			};
+			name = Release;
+		};
+		180827E920B8A37C006442AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OscillatorAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OscillatorApp;
+			};
+			name = Debug;
+		};
+		180827EA20B8A37C006442AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OscillatorAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OscillatorApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		180827B120B8A379006442AD /* Build configuration list for PBXProject "OscillatorApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				180827E020B8A37C006442AD /* Debug */,
+				180827E120B8A37C006442AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		180827E220B8A37C006442AD /* Build configuration list for PBXNativeTarget "OscillatorApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				180827E320B8A37C006442AD /* Debug */,
+				180827E420B8A37C006442AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		180827E520B8A37C006442AD /* Build configuration list for PBXNativeTarget "OscillatorAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				180827E620B8A37C006442AD /* Debug */,
+				180827E720B8A37C006442AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		180827E820B8A37C006442AD /* Build configuration list for PBXNativeTarget "OscillatorAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				180827E920B8A37C006442AD /* Debug */,
+				180827EA20B8A37C006442AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 180827AE20B8A379006442AD /* Project object */;
+}
