@@ -20,6 +20,7 @@
 		180827F320B8A668006442AD /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827F220B8A668006442AD /* libiconv.2.tbd */; };
 		180827F520B8A6CE006442AD /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */; };
 		180827F720B8A71F006442AD /* gst_ios_init.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827F620B8A71F006442AD /* gst_ios_init.m */; };
+		6CA2F98EB18AC75A8B49541E /* libPods-OscillatorApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,9 @@
 		180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libstdc++.6.0.9.tbd"; sourceTree = DEVELOPER_DIR; };
 		180827F620B8A71F006442AD /* gst_ios_init.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gst_ios_init.m; sourceTree = "<group>"; };
 		180827F820B8A762006442AD /* gst_ios_init.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gst_ios_init.h; sourceTree = "<group>"; };
+		98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OscillatorApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABDABE0918BFFC03E4F90AE1 /* Pods-OscillatorApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OscillatorApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OscillatorApp/Pods-OscillatorApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B0456D109118F943FDF67050 /* Pods-OscillatorApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OscillatorApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OscillatorApp/Pods-OscillatorApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 				180827F320B8A668006442AD /* libiconv.2.tbd in Frameworks */,
 				180827F520B8A6CE006442AD /* libstdc++.6.0.9.tbd in Frameworks */,
 				180827F020B8A53C006442AD /* GStreamer.framework in Frameworks */,
+				6CA2F98EB18AC75A8B49541E /* libPods-OscillatorApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +107,7 @@
 				180827D120B8A37C006442AD /* OscillatorAppTests */,
 				180827DC20B8A37C006442AD /* OscillatorAppUITests */,
 				180827B720B8A379006442AD /* Products */,
+				5792EF5A41CA4FC43AF99538 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,8 +166,18 @@
 				180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */,
 				180827F220B8A668006442AD /* libiconv.2.tbd */,
 				180827EF20B8A53C006442AD /* GStreamer.framework */,
+				98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		5792EF5A41CA4FC43AF99538 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABDABE0918BFFC03E4F90AE1 /* Pods-OscillatorApp.debug.xcconfig */,
+				B0456D109118F943FDF67050 /* Pods-OscillatorApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +187,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 180827E220B8A37C006442AD /* Build configuration list for PBXNativeTarget "OscillatorApp" */;
 			buildPhases = (
+				F94D060568B74F513CAC5845 /* [CP] Check Pods Manifest.lock */,
 				180827B220B8A379006442AD /* Sources */,
 				180827B320B8A379006442AD /* Frameworks */,
 				180827B420B8A379006442AD /* Resources */,
@@ -288,6 +305,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F94D060568B74F513CAC5845 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OscillatorApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		180827B220B8A379006442AD /* Sources */ = {
@@ -465,6 +503,7 @@
 		};
 		180827E320B8A37C006442AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABDABE0918BFFC03E4F90AE1 /* Pods-OscillatorApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -477,8 +516,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorApp;
-					OTHER_LDFLAGS = (
+				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
@@ -511,6 +549,7 @@
 					"-framework",
 					AssetsLibrary,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.OscillatorApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -518,6 +557,7 @@
 		};
 		180827E420B8A37C006442AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0456D109118F943FDF67050 /* Pods-OscillatorApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
