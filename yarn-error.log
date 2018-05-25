@@ -1,0 +1,39 @@
+Arguments: 
+  /Users/zia/.nvm/versions/node/v8.11.1/bin/node /Users/zia/.nvm/versions/node/v8.11.1/bin/yarn add --save react@16.0.0-alpha.12 react-native
+
+PATH: 
+  /Users/zia/.nvm/versions/node/v8.11.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.6.0
+
+Node version: 
+  8.11.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/zia/Projects/OscillatorApp/package.json: Unexpected token / in JSON at position 32
+      at JSON.parse (<anonymous>)
+      at /Users/zia/.nvm/versions/node/v8.11.1/lib/node_modules/yarn/lib/cli.js:1130:59
+      at Generator.next (<anonymous>)
+      at step (/Users/zia/.nvm/versions/node/v8.11.1/lib/node_modules/yarn/lib/cli.js:98:30)
+      at /Users/zia/.nvm/versions/node/v8.11.1/lib/node_modules/yarn/lib/cli.js:109:13
+      at <anonymous>
+
+npm manifest: 
+  {
+      "name": "OscillatorApp",  //name of your react app
+      "version": "0.0.1",
+      "private": true,
+      "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start"
+      }
+    }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
