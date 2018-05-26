@@ -22,7 +22,7 @@ export default class Draggable extends Component {
   }
 
   componentWillMount() {
-    this.callOnMove = throttle(this.callOnMove, 200, { trailing: false });
+    this.callOnMove = throttle(this.callOnMove, 5, { trailing: false });
     // Add a listener for the delta value change
     this._val = { x: 0, y: 0 };
     this.state.pan.addListener(value => {

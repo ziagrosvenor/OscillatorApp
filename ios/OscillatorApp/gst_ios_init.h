@@ -25,7 +25,7 @@ G_PASTE(g_io_module_, G_PASTE(name, _load_static)) ()
 #define GST_IOS_PLUGINS_SYS
 //#define GST_IOS_PLUGINS_VIS
 //#define GST_IOS_PLUGINS_PLAYBACK
-//#define GST_IOS_PLUGINS_EFFECTS
+#define GST_IOS_PLUGINS_EFFECTS
 //#define GST_IOS_PLUGINS_CODECS
 //#define GST_IOS_PLUGINS_NET
 

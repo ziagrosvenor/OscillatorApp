@@ -27,6 +27,7 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
   GstElement *source;
   GstElement *conv;
   GstElement *resample;
+  GstElement *verb;
   GstElement *sink;
   GMainContext *context; /* GLib context used to run the main loop */
   GMainLoop *main_loop;  /* GLib main loop */
@@ -170,12 +171,13 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   source   = gst_element_factory_make ("audiotestsrc",       "source");
   conv     = gst_element_factory_make ("audioconvert",  "converter");
   resample     = gst_element_factory_make ("audioresample",  "resample");
+  verb     = gst_element_factory_make ("freeverb",  "verb");
   sink     = gst_element_factory_make ("autoaudiosink", "audio-output");
   
   gst_bin_add_many (GST_BIN (pipeline),
-                    source, conv, resample, sink, NULL);
+                    source, conv, resample, verb, sink, NULL);
   
-  gst_element_link_many (source, conv, resample, sink, NULL);
+  gst_element_link_many (source, conv, resample, verb, sink, NULL);
   /* Build pipeline */
   //pipeline = gst_parse_launch("audiotestsrc ! audioconvert ! audioresample ! autoaudiosink", &error);
   if (error) {
