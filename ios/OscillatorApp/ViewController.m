@@ -22,6 +22,8 @@
   [super viewDidLoad];
   gst_backend = [[GStreamerBackend alloc] init:self];
   NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios"];
+  //NSURL *jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+
   RCTRootView *rootView =
   [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
                               moduleName: @"OscillatorApp"

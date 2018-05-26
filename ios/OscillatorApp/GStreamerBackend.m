@@ -27,6 +27,7 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
   GstElement *source;
   GstElement *conv;
   GstElement *resample;
+  GstElement *eq;
   GstElement *verb;
   GstElement *volume;
   GstElement *sink;
@@ -104,7 +105,10 @@ int waveCounter = 0;
 -(void) updateFreq:(double)freq
               time:(double)time
 {
-  g_object_set(source, "freq", freq, NULL);
+  g_object_set(source, "freq", (freq * 0.7) - 3000, NULL);
+  g_object_set(eq, "band0", -(freq / 20000) * 24, NULL);
+  g_object_set(eq, "band1", -(freq / 20000) * 24, NULL);
+  g_object_set(eq, "band2", -(freq / 20000) * 24, NULL);
   g_object_set(verb, "room-size", time, NULL);
   g_object_set(verb, "level", time, NULL);
   g_object_set(volume, "volume", time * 6, NULL);
@@ -186,14 +190,15 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   source   = gst_element_factory_make ("audiotestsrc",       "source");
   conv     = gst_element_factory_make ("audioconvert",  "converter");
   resample     = gst_element_factory_make ("audioresample",  "resample");
+  eq     = gst_element_factory_make ("equalizer-3bands",  "eq");
   verb     = gst_element_factory_make ("freeverb",  "verb");
   volume     = gst_element_factory_make ("volume",  "volume");
   sink     = gst_element_factory_make ("autoaudiosink", "audio-output");
   
   gst_bin_add_many (GST_BIN (pipeline),
-                    source, conv, resample, verb, volume, sink, NULL);
+                    source, conv, resample, eq, verb, volume, sink, NULL);
   
-  gst_element_link_many (source, conv, resample, verb, volume, sink, NULL);
+  gst_element_link_many (source, conv, resample, eq, verb, volume, sink, NULL);
   /* Build pipeline */
   //pipeline = gst_parse_launch("audiotestsrc ! audioconvert ! audioresample ! autoaudiosink", &error);
   if (error) {

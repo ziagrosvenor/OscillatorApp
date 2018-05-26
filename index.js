@@ -36,7 +36,7 @@ class RNHighScores extends React.Component {
     );
   }
   handleMove({ moveY, moveX }) {
-    GStreamerBridge.updateFreq(moveY, moveX / 300);
+    GStreamerBridge.updateFreq(moveY / 1000 * 20000, moveX / 300);
   }
 }
 
