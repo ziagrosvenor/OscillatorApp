@@ -1433,6 +1433,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+  var _templateObject = _taggedTemplateLiteral(["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-top: 200px;\n  margin-bottom: 100px;\n"], ["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-top: 200px;\n  margin-bottom: 100px;\n"]);
+
   var _reactNative = _require(_dependencyMap[2], "react-native");
 
   var _native = _require(_dependencyMap[3], "styled-components/native");
@@ -1455,6 +1457,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+  function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
   var _components = {
     RNHighScores: {
       displayName: "RNHighScores"
@@ -1474,6 +1478,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     };
   }
 
+  var Band = (0, _reactNative.requireNativeComponent)("Band", null);
+  var CIRCLE_RADIUS = 88;
+
+  var TouchPad = _native2.default.TouchableOpacity(_templateObject, CIRCLE_RADIUS, CIRCLE_RADIUS, CIRCLE_RADIUS);
+
   var RNHighScores = _wrapComponent("RNHighScores")(function (_React$Component) {
     _inherits(RNHighScores, _React$Component);
 
@@ -1490,6 +1499,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
       return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RNHighScores.__proto__ || Object.getPrototypeOf(RNHighScores)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
         playing: false
+      }, _this.togglePlaying = function () {
+        if (_this.state.playing) {
+          _GStreamerBridgeNativeModule2.default.pause();
+        } else {
+          _GStreamerBridgeNativeModule2.default.play();
+        }
+
+        _this.setState({
+          playing: !_this.state.playing
+        });
       }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -1497,22 +1516,27 @@ __d(function (global, _require, module, exports, _dependencyMap) {
       key: "componentDidMount",
       value: function componentDidMount() {}
     }, {
-      key: "togglePlaying",
-      value: function togglePlaying() {
-        if (this.state.playing) {
-          _GStreamerBridgeNativeModule2.default.pause();
-        } else {
-          _GStreamerBridgeNativeModule2.default.play();
-        }
-
-        this.setState({
-          playing: !this.state.playing
-        });
-      }
-    }, {
       key: "render",
       value: function render() {
         var _this2 = this;
+
+        var bands = [];
+
+        for (var i = 0; i < 5; i++) {
+          bands.push(_react3.default.createElement(Band, {
+            key: i,
+            idx: i,
+            style: {
+              color: "red",
+              width: 400,
+              height: 120
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 48
+            }
+          }));
+        }
 
         return _react3.default.createElement(
           _reactNative.View,
@@ -1520,9 +1544,23 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             style: styles.container,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 30
+              lineNumber: 57
             }
           },
+          _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: {
+                top: 0,
+                position: "absolute"
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 58
+              }
+            },
+            bands
+          ),
           _react3.default.createElement(_DraggableCircle2.default, {
             onPressIn: function onPressIn() {
               return _this2.togglePlaying();
@@ -1530,9 +1568,29 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             onMove: this.handleMove,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 31
+              lineNumber: 59
             }
-          })
+          }),
+          _react3.default.createElement(
+            TouchPad,
+            {
+              onPress: this.togglePlaying,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 63
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 64
+                }
+              },
+              this.state.playing ? "PAUSE" : "PLAY"
+            )
+          )
         );
       }
     }, {
@@ -1541,7 +1599,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         var moveY = _ref2.moveY,
             moveX = _ref2.moveX;
 
-        _GStreamerBridgeNativeModule2.default.updateFreq(moveY / 800 * 20000, moveX / 300);
+        _GStreamerBridgeNativeModule2.default.updateFreq(moveY / 800 * 200 + 30, moveX / 400 * 0.3 + 0.5);
       }
     }]);
 
@@ -1551,9 +1609,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   var styles = _reactNative.StyleSheet.create({
     container: {
       flex: 1,
+      padding: 200,
+      flexDirection: "column-reverse",
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "#4ABDAC"
+      backgroundColor: "orange"
     },
     highScoresTitle: {
       fontSize: 20,
@@ -67183,7 +67243,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     };
   }
 
-  var CIRCLE_RADIUS = 44;
+  var CIRCLE_RADIUS = 22;
 
   var TouchPad = _native2.default.TouchableOpacity(_templateObject, CIRCLE_RADIUS, CIRCLE_RADIUS, CIRCLE_RADIUS);
 
@@ -67241,24 +67301,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         var panStyle = {
           transform: this.state.pan.getTranslateTransform()
         };
-        return _react3.default.createElement(
-          _reactNative.Animated.View,
-          _extends({}, this.panResponder.panHandlers, {
-            style: [panStyle, styles.circle],
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 49
-            }
-          }),
-          _react3.default.createElement(TouchPad, {
-            onPressIn: this.props.onPressIn,
-            onPressOut: this.props.onPressOut,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 53
-            }
-          })
-        );
+        return _react3.default.createElement(_reactNative.Animated.View, _extends({}, this.panResponder.panHandlers, {
+          style: [panStyle, styles.circle],
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 49
+          }
+        }));
       }
     }]);
 
@@ -67269,7 +67318,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var styles = _reactNative.StyleSheet.create({
     circle: {
-      backgroundColor: "#FC4A1A",
+      backgroundColor: "black",
+      opacity: 0.5,
       width: CIRCLE_RADIUS * 2,
       height: CIRCLE_RADIUS * 2,
       borderRadius: CIRCLE_RADIUS

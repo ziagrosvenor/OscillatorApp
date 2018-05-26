@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OscillatorApp/ViewController.m"
-            timestampString = "549026136.688619"
+            timestampString = "549047787.1307009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-play"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OscillatorApp/GStreamerBackend.m"
-            timestampString = "549026136.6887"
+            timestampString = "549047787.1314681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "-updateFreq:time:"
             landmarkType = "7">
          </BreakpointContent>
@@ -73,29 +73,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OscillatorApp/GStreamerBackend.m"
-            timestampString = "549026136.6890841"
+            filePath = "Band.m"
+            timestampString = "549047787.131793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-updateFreq:time:"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "-onDisplayLink"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OscillatorApp/GStreamerBackend.m"
-            timestampString = "549026136.689347"
+            filePath = "Band.m"
+            timestampString = "549047787.132046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-play"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-onDisplayLink"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

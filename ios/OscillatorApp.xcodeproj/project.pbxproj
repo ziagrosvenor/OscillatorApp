@@ -21,6 +21,8 @@
 		180827F520B8A6CE006442AD /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */; };
 		180827F720B8A71F006442AD /* gst_ios_init.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827F620B8A71F006442AD /* gst_ios_init.m */; };
 		180827FA20B8BD35006442AD /* GStreamerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827F920B8BD34006442AD /* GStreamerBridge.m */; };
+		1854332520B9A2EC004DC322 /* Band.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854332420B9A2EC004DC322 /* Band.m */; };
+		1854332820B9A38E004DC322 /* BandManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854332720B9A38E004DC322 /* BandManager.m */; };
 		18EF106820B968F600870CB5 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 18EF106720B968F600870CB5 /* main.jsbundle */; };
 		6CA2F98EB18AC75A8B49541E /* libPods-OscillatorApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,11 @@
 		180827F820B8A762006442AD /* gst_ios_init.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gst_ios_init.h; sourceTree = "<group>"; };
 		180827F920B8BD34006442AD /* GStreamerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GStreamerBridge.m; sourceTree = SOURCE_ROOT; };
 		180827FB20B8BD3C006442AD /* GStreamerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GStreamerBridge.h; sourceTree = SOURCE_ROOT; };
+		1854332320B9A2DC004DC322 /* Band.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Band.h; sourceTree = "<group>"; };
+		1854332420B9A2EC004DC322 /* Band.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Band.m; sourceTree = "<group>"; };
+		1854332620B9A354004DC322 /* BandManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BandManager.h; sourceTree = "<group>"; };
+		1854332720B9A38E004DC322 /* BandManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BandManager.m; sourceTree = "<group>"; };
+		18B3293020B9A1D300BE1A66 /* SpectrumBand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpectrumBand.h; sourceTree = "<group>"; };
 		18EF106720B968F600870CB5 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../main.jsbundle; sourceTree = "<group>"; };
 		98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OscillatorApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDABE0918BFFC03E4F90AE1 /* Pods-OscillatorApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OscillatorApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OscillatorApp/Pods-OscillatorApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +114,11 @@
 		180827AD20B8A379006442AD = {
 			isa = PBXGroup;
 			children = (
+				1854332720B9A38E004DC322 /* BandManager.m */,
+				1854332620B9A354004DC322 /* BandManager.h */,
+				1854332420B9A2EC004DC322 /* Band.m */,
+				1854332320B9A2DC004DC322 /* Band.h */,
+				18B3293020B9A1D300BE1A66 /* SpectrumBand.h */,
 				18EF106720B968F600870CB5 /* main.jsbundle */,
 				180827EE20B8A4ED006442AD /* Frameworks */,
 				180827B820B8A379006442AD /* OscillatorApp */,
@@ -341,6 +353,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1854332820B9A38E004DC322 /* BandManager.m in Sources */,
+				1854332520B9A2EC004DC322 /* Band.m in Sources */,
 				180827BE20B8A379006442AD /* ViewController.m in Sources */,
 				180827FA20B8BD35006442AD /* GStreamerBridge.m in Sources */,
 				180827C920B8A37C006442AD /* main.m in Sources */,

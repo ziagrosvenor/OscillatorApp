@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, PanResponder, Animated } from "react-native";
 import { throttle } from "lodash";
 import styled from "styled-components/native";
-let CIRCLE_RADIUS = 44;
+let CIRCLE_RADIUS = 22;
 const TouchPad = styled.TouchableOpacity`
   width: ${CIRCLE_RADIUS};
   height: ${CIRCLE_RADIUS};
@@ -49,19 +49,15 @@ export default class Draggable extends Component {
       <Animated.View
         {...this.panResponder.panHandlers}
         style={[panStyle, styles.circle]}
-      >
-        <TouchPad
-          onPressIn={this.props.onPressIn}
-          onPressOut={this.props.onPressOut}
-        />
-      </Animated.View>
+      />
     );
   }
 }
 
 let styles = StyleSheet.create({
   circle: {
-    backgroundColor: "#FC4A1A",
+    backgroundColor: "black",
+    opacity: 0.5,
     width: CIRCLE_RADIUS * 2,
     height: CIRCLE_RADIUS * 2,
     borderRadius: CIRCLE_RADIUS

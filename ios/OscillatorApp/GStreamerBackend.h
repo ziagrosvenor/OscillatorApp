@@ -15,6 +15,7 @@
 -(void) updateFreq:(double)freq
               time:(double)time;
 -(double) getVolume;
+-(float) getFrequencyData:(int)idx;
 
 +(GStreamerBackend *)sharedInstance;
 
