@@ -28,6 +28,7 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
   GstElement *conv;
   GstElement *resample;
   GstElement *verb;
+  GstElement *volume;
   GstElement *sink;
   GMainContext *context; /* GLib context used to run the main loop */
   GMainLoop *main_loop;  /* GLib main loop */
@@ -78,8 +79,16 @@ static GStreamerBackend *_sharedGStreamerBackend = nil;
   }
 }
 
+int waveCounter = 0;
+
 -(void) play
 {
+  g_object_set(source, "wave", waveCounter, NULL);
+  waveCounter++;
+  
+  if (waveCounter >= 10) {
+    waveCounter = 0;
+  }
   if(gst_element_set_state(pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE) {
     [self setUIMessage:"Failed to set pipeline to playing"];
   }
@@ -93,9 +102,15 @@ static GStreamerBackend *_sharedGStreamerBackend = nil;
 }
 
 -(void) updateFreq:(double)freq
+              time:(double)time
 {
   g_object_set(source, "freq", freq, NULL);
+  g_object_set(verb, "room-size", time, NULL);
+  g_object_set(verb, "level", time, NULL);
+  g_object_set(volume, "volume", time * 6, NULL);
 }
+
+
 
 /*
  * Private methods
@@ -172,12 +187,13 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   conv     = gst_element_factory_make ("audioconvert",  "converter");
   resample     = gst_element_factory_make ("audioresample",  "resample");
   verb     = gst_element_factory_make ("freeverb",  "verb");
+  volume     = gst_element_factory_make ("volume",  "volume");
   sink     = gst_element_factory_make ("autoaudiosink", "audio-output");
   
   gst_bin_add_many (GST_BIN (pipeline),
-                    source, conv, resample, verb, sink, NULL);
+                    source, conv, resample, verb, volume, sink, NULL);
   
-  gst_element_link_many (source, conv, resample, verb, sink, NULL);
+  gst_element_link_many (source, conv, resample, verb, volume, sink, NULL);
   /* Build pipeline */
   //pipeline = gst_parse_launch("audiotestsrc ! audioconvert ! audioresample ! autoaudiosink", &error);
   if (error) {

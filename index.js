@@ -35,8 +35,8 @@ class RNHighScores extends React.Component {
       </View>
     );
   }
-  handleMove({ moveY }) {
-    GStreamerBridge.updateFreq(moveY);
+  handleMove({ moveY, moveX }) {
+    GStreamerBridge.updateFreq(moveY, moveX / 300);
   }
 }
 
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#4ABDAC"
   },
   highScoresTitle: {
     fontSize: 20,

@@ -53,10 +53,11 @@ RCT_EXPORT_METHOD(pause)
   [[GStreamerBackend sharedInstance] pause];
 }
 
-RCT_EXPORT_METHOD(updateFreq:(nonnull NSNumber*)freq)
+RCT_EXPORT_METHOD(updateFreq:(nonnull NSNumber*)freq time:(nonnull NSNumber*)time)
 {
-  [[GStreamerBackend sharedInstance] updateFreq:[freq doubleValue]];
+  [[GStreamerBackend sharedInstance] updateFreq:[freq doubleValue] time:[time doubleValue]];
 }
+
 
 // List all your events here
 // https://facebook.github.io/react-native/releases/next/docs/native-modules-ios.html#sending-events-to-javascript
