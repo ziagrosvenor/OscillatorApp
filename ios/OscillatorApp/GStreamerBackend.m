@@ -77,7 +77,7 @@ static GStreamerBackend *_sharedGStreamerBackend = nil;
   }
 }
 
-int waveCounter = 3;
+int waveCounter = 2;
 
 -(void) play
 {
@@ -97,7 +97,7 @@ int waveCounter = 3;
 
 -(void) pause
 {
-  gst_element_set_state(source2, GST_STATE_PAUSED);
+  gst_element_set_state(source2, GST_STATE_PLAYING);
   if(gst_element_set_state(pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
     [self setUIMessage:"Failed to set pipeline to paused"];
   }
@@ -111,15 +111,14 @@ int waveCounter = 3;
               time:(double)time
 {
   g_object_set(source, "freq", freq, NULL);
-  g_object_set(source2, "freq", freq * 4, NULL);
   g_object_set(verb, "room-size", time, NULL);
   g_object_set(verb, "level", time, NULL);
   
-  g_object_set(eq, "band0", -(freq/ 400) * 24, NULL);
-  g_object_set(eq, "band1", -(freq/ 400) * 24, NULL);
-  g_object_set(eq, "band2", -(freq/ 400) * 24, NULL);
+  g_object_set(eq, "band0", -time * 12, NULL);
+//  g_object_set(eq, "band1", -(freq/ 400) * 24, NULL);
+  g_object_set(eq, "band2", -(freq / 800) * 24, NULL);
 
-  g_object_set(volume, "volume", time * 6, NULL);
+  g_object_set(volume, "volume", time, NULL);
 }
 
 
@@ -248,7 +247,7 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   GstCaps *caps;
   
   gst_bin_add_many (GST_BIN (pipeline),
-                    source, add, conv, resample, eq, verb, volume, spectrum, sink, NULL);
+                    source, source2, add, conv, resample, eq, verb, volume, spectrum, sink, NULL);
   
   
   /* Build pipeline */
@@ -265,6 +264,7 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   
   caps = gst_caps_new_simple ("audio/x-raw",
                               "rate", G_TYPE_INT, AUDIOFREQ, NULL);
+
   
   if (!gst_element_link (source, add) ||
       !gst_element_link (add, conv) ||
@@ -280,8 +280,9 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   gst_caps_unref (caps);
   
   
-  gst_element_link (source2, add);
+//  gst_element_link (source2, add);
   
+
   
   /* Instruct the bus to emit signals for each received message, and connect to the interesting signals */
   bus = gst_element_get_bus (pipeline);

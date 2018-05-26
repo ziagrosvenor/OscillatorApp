@@ -16,6 +16,7 @@ import { requireNativeComponent } from "react-native";
 
 // requireNativeComponent automatically resolves 'RNTMap' to 'RNTMapManager'
 const Band = requireNativeComponent("Band", null);
+const NativeDraggableCircle = requireNativeComponent("DraggableCircle", null);
 
 let CIRCLE_RADIUS = 88;
 const TouchPad = styled.TouchableOpacity`
@@ -60,6 +61,15 @@ class RNHighScores extends React.Component {
           onPressIn={() => this.togglePlaying()}
           onMove={this.handleMove}
         />
+        <NativeDraggableCircle
+          style={{
+            backgroundColor: "black",
+            opacity: 0.5,
+            width: CIRCLE_RADIUS,
+            height: CIRCLE_RADIUS,
+            borderRadius: CIRCLE_RADIUS / 2
+          }}
+        />
         <TouchPad onPress={this.togglePlaying}>
           <Text>{this.state.playing ? "PAUSE" : "PLAY"}</Text>
         </TouchPad>
@@ -67,7 +77,7 @@ class RNHighScores extends React.Component {
     );
   }
   handleMove({ moveY, moveX }) {
-    GStreamerBridge.updateFreq(moveY / 800 * 200 + 30, moveX / 400 * 0.3 + 0.5);
+    GStreamerBridge.updateFreq(moveY, moveX / 400);
   }
 }
 

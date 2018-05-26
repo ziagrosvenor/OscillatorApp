@@ -1599,7 +1599,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         var moveY = _ref2.moveY,
             moveX = _ref2.moveX;
 
-        _GStreamerBridgeNativeModule2.default.updateFreq(moveY / 800 * 200 + 30, moveX / 400 * 0.3 + 0.5);
+        _GStreamerBridgeNativeModule2.default.updateFreq(moveY, moveX / 400);
       }
     }]);
 
