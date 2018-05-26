@@ -12,6 +12,7 @@
 
 /* Set the pipeline to PAUSED */
 -(void) pause;
+-(void) updateFreq:(double)freq;
 
 +(GStreamerBackend *)sharedInstance;
 

@@ -24,6 +24,10 @@ GST_DEBUG_CATEGORY_STATIC (debug_category);
 @implementation GStreamerBackend {
   id ui_delegate;        /* Class that we use to interact with the user interface */
   GstElement *pipeline;  /* The running pipeline */
+  GstElement *source;
+  GstElement *conv;
+  GstElement *resample;
+  GstElement *sink;
   GMainContext *context; /* GLib context used to run the main loop */
   GMainLoop *main_loop;  /* GLib main loop */
   gboolean initialized;  /* To avoid informing the UI multiple times about the initialization */
@@ -85,6 +89,11 @@ static GStreamerBackend *_sharedGStreamerBackend = nil;
   if(gst_element_set_state(pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
     [self setUIMessage:"Failed to set pipeline to paused"];
   }
+}
+
+-(void) updateFreq:(double)freq
+{
+  g_object_set(source, "freq", freq, NULL);
 }
 
 /*
@@ -156,9 +165,19 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   /* Create our own GLib Main Context and make it the default one */
   context = g_main_context_new ();
   g_main_context_push_thread_default(context);
-  
   /* Build pipeline */
-  pipeline = gst_parse_launch("audiotestsrc ! audioconvert ! audioresample ! autoaudiosink", &error);
+  pipeline = gst_pipeline_new("sine");
+  source   = gst_element_factory_make ("audiotestsrc",       "source");
+  conv     = gst_element_factory_make ("audioconvert",  "converter");
+  resample     = gst_element_factory_make ("audioresample",  "resample");
+  sink     = gst_element_factory_make ("autoaudiosink", "audio-output");
+  
+  gst_bin_add_many (GST_BIN (pipeline),
+                    source, conv, resample, sink, NULL);
+  
+  gst_element_link_many (source, conv, resample, sink, NULL);
+  /* Build pipeline */
+  //pipeline = gst_parse_launch("audiotestsrc ! audioconvert ! audioresample ! autoaudiosink", &error);
   if (error) {
     gchar *message = g_strdup_printf("Unable to build pipeline: %s", error->message);
     g_clear_error (&error);

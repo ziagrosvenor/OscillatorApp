@@ -35,7 +35,9 @@ class RNHighScores extends React.Component {
       </View>
     );
   }
-  handleMove = console.warn;
+  handleMove({ moveY }) {
+    GStreamerBridge.updateFreq(moveY);
+  }
 }
 
 const styles = StyleSheet.create({

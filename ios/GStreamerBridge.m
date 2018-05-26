@@ -46,13 +46,16 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(play)
 {
   [[GStreamerBackend sharedInstance] play];
-  //[self emitMessageToRN:@"EXAMPLE_EVENT" :nil];
 }
 
 RCT_EXPORT_METHOD(pause)
 {
   [[GStreamerBackend sharedInstance] pause];
-  //[self emitMessageToRN:@"EXAMPLE_EVENT" :nil];
+}
+
+RCT_EXPORT_METHOD(updateFreq:(nonnull NSNumber*)freq)
+{
+  [[GStreamerBackend sharedInstance] updateFreq:[freq doubleValue]];
 }
 
 // List all your events here
