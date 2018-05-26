@@ -26,7 +26,7 @@ float spectrumData[20];
 
 @implementation GStreamerBackend {
   id ui_delegate;        /* Class that we use to interact with the user interface */
-  GstElement *pipeline, *source, *conv, *resample, *eq, *verb, *volume, *spectrum, *sink;
+  GstElement *pipeline, *source, *source2, *add, *conv, *resample, *eq, *verb, *volume, *spectrum, *sink;
   GMainContext *context; /* GLib context used to run the main loop */
   GMainLoop *main_loop;  /* GLib main loop */
   gboolean initialized;  /* To avoid informing the UI multiple times about the initialization */
@@ -83,11 +83,13 @@ int waveCounter = 3;
 {
 
   g_object_set(source, "wave", waveCounter, NULL);
+  g_object_set(source2, "wave", waveCounter, NULL);
   
   
 //  if (waveCounter >= 10) {
 //    waveCounter = 0;
 //  }
+  gst_element_set_state(source2, GST_STATE_PLAYING);
   if(gst_element_set_state(pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE) {
     [self setUIMessage:"Failed to set pipeline to playing"];
   }
@@ -95,6 +97,7 @@ int waveCounter = 3;
 
 -(void) pause
 {
+  gst_element_set_state(source2, GST_STATE_PAUSED);
   if(gst_element_set_state(pipeline, GST_STATE_PAUSED) == GST_STATE_CHANGE_FAILURE) {
     [self setUIMessage:"Failed to set pipeline to paused"];
   }
@@ -108,9 +111,15 @@ int waveCounter = 3;
               time:(double)time
 {
   g_object_set(source, "freq", freq, NULL);
+  g_object_set(source2, "freq", freq * 4, NULL);
   g_object_set(verb, "room-size", time, NULL);
   g_object_set(verb, "level", time, NULL);
-  g_object_set(volume, "volume", time * 3, NULL);
+  
+  g_object_set(eq, "band0", -(freq/ 400) * 24, NULL);
+  g_object_set(eq, "band1", -(freq/ 400) * 24, NULL);
+  g_object_set(eq, "band2", -(freq/ 400) * 24, NULL);
+
+  g_object_set(volume, "volume", time * 6, NULL);
 }
 
 
@@ -228,6 +237,8 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   
   pipeline = gst_pipeline_new("sine");
   source   = gst_element_factory_make ("audiotestsrc",       "source");
+  source2   = gst_element_factory_make ("audiotestsrc",       "source2");
+  add   = gst_element_factory_make ("adder",       "add");
   conv     = gst_element_factory_make ("audioconvert",  "converter");
   resample     = gst_element_factory_make ("audioresample",  "resample");
   eq     = gst_element_factory_make ("equalizer-3bands",  "eq");
@@ -237,7 +248,7 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   GstCaps *caps;
   
   gst_bin_add_many (GST_BIN (pipeline),
-                    source, conv, resample, eq, verb, volume, spectrum, sink, NULL);
+                    source, add, conv, resample, eq, verb, volume, spectrum, sink, NULL);
   
   
   /* Build pipeline */
@@ -255,7 +266,8 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
   caps = gst_caps_new_simple ("audio/x-raw",
                               "rate", G_TYPE_INT, AUDIOFREQ, NULL);
   
-  if (!gst_element_link (source, conv) ||
+  if (!gst_element_link (source, add) ||
+      !gst_element_link (add, conv) ||
       !gst_element_link (conv, resample) ||
       !gst_element_link (resample, eq) ||
       !gst_element_link (eq, verb) ||
@@ -266,6 +278,10 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
     exit (1);
   }
   gst_caps_unref (caps);
+  
+  
+  gst_element_link (source2, add);
+  
   
   /* Instruct the bus to emit signals for each received message, and connect to the interesting signals */
   bus = gst_element_get_bus (pipeline);
