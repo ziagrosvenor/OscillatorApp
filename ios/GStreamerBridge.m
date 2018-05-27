@@ -65,14 +65,18 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(play)
 {
   [[GStreamerBackend sharedInstance] play];
-  dispatch_async(dispatch_get_main_queue(), ^{
-    NSTimer *masterPositionTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
-                                     target:self
-                                   selector:@selector(onDisplayLink)
-                                   userInfo:nil
-                                    repeats:YES];
-     [[NSRunLoop currentRunLoop] addTimer:masterPositionTimer forMode:NSRunLoopCommonModes];
-  });
+  
+  if (masterPositionTimer == nil) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self->masterPositionTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                             target:self
+                                                           selector:@selector(onDisplayLink)
+                                                           userInfo:nil
+                                                            repeats:YES];
+      [[NSRunLoop currentRunLoop] addTimer:self->masterPositionTimer forMode:NSRunLoopCommonModes];
+    });
+  }
+ 
 }
 
 RCT_EXPORT_METHOD(pause)

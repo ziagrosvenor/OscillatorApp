@@ -92,6 +92,6 @@
     
     level = powf(adjAmp, 1.0f / root);
   }
-  self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 4 * level, 4 * level);;
+  self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 8 * level, 8 * level);;
 }
 @end

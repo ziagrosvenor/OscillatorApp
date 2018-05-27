@@ -138,7 +138,7 @@ class RNHighScores extends React.Component {
         <NativeDraggableCircle
           style={{
             backgroundColor: "black",
-            opacity: this.state.level,
+            opacity: 0.5,
             justifyContent: "center",
             alignItems: "center",
             width: CIRCLE_RADIUS,
