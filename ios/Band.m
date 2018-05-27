@@ -31,8 +31,8 @@
 // Called periodically on every screen refresh, 60 fps.
 - (void)onDisplayLink {
   float       level;                // The linear 0.0 .. 1.0 value we need.
-  const float minDecibels = -80.0f; // Or use -60dB, which I measured in a silent room.
-  float       decibels    = [[GStreamerBackend sharedInstance] getFrequencyData:_idx];
+  const float minDecibels = -120.0f; // Or use -60dB, which I measured in a silent room.
+  float       decibels    = [[GStreamerBackend sharedInstance] getFrequencyData:_idx] + 10.0;
   
   if (decibels < minDecibels)
   {
@@ -54,7 +54,7 @@
   }
   self.backgroundColor = [UIColor whiteColor];
 
-  self.center = CGPointMake(level * 350, (700 / 5) * _idx);
+  self.center = CGPointMake(((level * 2) * 350) - 200, (750 / 10) * _idx);
   
   self.alpha = level + 0.3;
 }

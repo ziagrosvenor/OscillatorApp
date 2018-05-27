@@ -16,6 +16,7 @@
               time:(double)time;
 -(double) getVolume;
 -(float) getFrequencyData:(int)idx;
+-(void) setWaveform:(int)idx;
 
 +(GStreamerBackend *)sharedInstance;
 

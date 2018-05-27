@@ -81,14 +81,6 @@ int waveCounter = 2;
 
 -(void) play
 {
-
-  g_object_set(source, "wave", waveCounter, NULL);
-  g_object_set(source2, "wave", waveCounter, NULL);
-  
-  
-//  if (waveCounter >= 10) {
-//    waveCounter = 0;
-//  }
   gst_element_set_state(source2, GST_STATE_PLAYING);
   if(gst_element_set_state(pipeline, GST_STATE_PLAYING) == GST_STATE_CHANGE_FAILURE) {
     [self setUIMessage:"Failed to set pipeline to playing"];
@@ -121,10 +113,11 @@ int waveCounter = 2;
   g_object_set(volume, "volume", time, NULL);
 }
 
+-(void) setWaveform:(int)idx {
+  g_object_set(source, "wave", idx, NULL);
+};
 
-
-#define AUDIOFREQ 32000
-
+#define AUDIOFREQ 44000
 /* receive spectral data from element message */
 static gboolean
 message_handler (GstBus * bus, GstMessage * message, gpointer data)

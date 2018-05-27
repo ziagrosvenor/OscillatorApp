@@ -23,7 +23,14 @@
 #include "GStreamerBackend.h"
 
 @implementation GStreamerBridge {
-  
+  NSTimer *masterPositionTimer;
+}
+
+- (void)dealloc {
+  if (masterPositionTimer != nil) {
+    [masterPositionTimer invalidate];
+    masterPositionTimer = nil;
+  }
 }
 
 @synthesize bridge = _bridge;
@@ -31,6 +38,18 @@
 // Export a native module
 // https://facebook.github.io/react-native/docs/native-modules-ios.html
 RCT_EXPORT_MODULE();
+
+
+- (instancetype)init {
+  if ((self = [super init])) {
+//    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(onDisplayLink)];
+//    displayLink.frameInterval = 5;
+//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+    
+  }
+  return self;
+}
+
 
 // Export constants
 // https://facebook.github.io/react-native/releases/next/docs/native-modules-ios.html#exporting-constants
@@ -46,6 +65,14 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(play)
 {
   [[GStreamerBackend sharedInstance] play];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NSTimer *masterPositionTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                     target:self
+                                   selector:@selector(onDisplayLink)
+                                   userInfo:nil
+                                    repeats:YES];
+     [[NSRunLoop currentRunLoop] addTimer:masterPositionTimer forMode:NSRunLoopCommonModes];
+  });
 }
 
 RCT_EXPORT_METHOD(pause)
@@ -58,6 +85,10 @@ RCT_EXPORT_METHOD(updateFreq:(nonnull NSNumber*)freq time:(nonnull NSNumber*)tim
   [[GStreamerBackend sharedInstance] updateFreq:[freq doubleValue] time:[time doubleValue]];
 }
 
+RCT_EXPORT_METHOD(setWaveform:(nonnull NSNumber*)idx)
+{
+  [[GStreamerBackend sharedInstance] setWaveform:[idx intValue]];
+}
 
 // List all your events here
 // https://facebook.github.io/react-native/releases/next/docs/native-modules-ios.html#sending-events-to-javascript
@@ -73,6 +104,34 @@ RCT_EXPORT_METHOD(updateFreq:(nonnull NSNumber*)freq time:(nonnull NSNumber*)tim
   // The bridge eventDispatcher is used to send events from native to JS env
   // No documentation yet on DeviceEventEmitter: https://github.com/facebook/react-native/issues/2819
   [self sendEventWithName: eventName body: params];
+}
+
+// Called periodically on every screen refresh, 60 fps.
+- (void)onDisplayLink {
+  float       level;                // The linear 0.0 .. 1.0 value we need.
+  const float minDecibels = -120.0f; // Or use -60dB, which I measured in a silent room.
+  float       decibels    = [[GStreamerBackend sharedInstance] getFrequencyData:1] + 10.0;
+  
+  if (decibels < minDecibels)
+  {
+    level = 0.0f;
+  }
+  else if (decibels >= 0.0f)
+  {
+    level = 1.0f;
+  }
+  else
+  {
+    float   root            = 2.0f;
+    float   minAmp          = powf(10.0f, 0.05f * minDecibels);
+    float   inverseAmpRange = 1.0f / (1.0f - minAmp);
+    float   amp             = powf(10.0f, 0.05f * decibels);
+    float   adjAmp          = (amp - minAmp) * inverseAmpRange;
+    
+    level = powf(adjAmp, 1.0f / root);
+  }
+ 
+  [self sendEventWithName: @"EXAMPLE_EVENT" body:@{@"level": [NSNumber numberWithFloat:level]}];
 }
 
 @end

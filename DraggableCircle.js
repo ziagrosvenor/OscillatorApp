@@ -1,8 +1,15 @@
 import React, { Component } from "react";
-import { StyleSheet, View, PanResponder, Animated } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  PanResponder,
+  Animated
+} from "react-native";
 import { throttle } from "lodash";
 import styled from "styled-components/native";
-let CIRCLE_RADIUS = 22;
+let CIRCLE_RADIUS = 44;
 const TouchPad = styled.TouchableOpacity`
   width: ${CIRCLE_RADIUS};
   height: ${CIRCLE_RADIUS};
@@ -13,7 +20,8 @@ export default class Draggable extends Component {
   constructor() {
     super();
     this.state = {
-      pan: new Animated.ValueXY()
+      x: 0,
+      y: 0
     };
   }
 
@@ -25,31 +33,43 @@ export default class Draggable extends Component {
     this.callOnMove = throttle(this.callOnMove, 5, { trailing: false });
     // Add a listener for the delta value change
     this._val = { x: 0, y: 0 };
-    this.state.pan.addListener(value => {
-      return (this._val = value);
-    });
+
     // Initialize PanResponder with move handling
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (e, gesture) => true,
+      onPanResponderGrant: () => {
+        this.props.onPressIn();
+      },
       onPanResponderMove: (evt, gestureState) => {
+        console.log(gestureState);
+        this.setState({ x: 0 + gestureState.moveX, y: 0 + gestureState.moveY });
         this.callOnMove({ ...gestureState });
-        return Animated.event([
-          null,
-          { dx: this.state.pan.x, dy: this.state.pan.y }
-        ])(evt, gestureState);
+      },
+      onPanResponderRelease: () => {
+        this.props.onPressOut();
       }
     });
   }
 
   render() {
-    const panStyle = {
-      transform: this.state.pan.getTranslateTransform()
-    };
     return (
       <Animated.View
         {...this.panResponder.panHandlers}
-        style={[panStyle, styles.circle]}
-      />
+        style={{
+          left: this.state.x,
+          top: this.state.y,
+          backgroundColor: "black",
+          opacity: 0.5,
+          position: "absolute",
+          justifyContent: "center",
+          alignItems: "center",
+          width: CIRCLE_RADIUS * 2,
+          height: CIRCLE_RADIUS * 2,
+          borderRadius: CIRCLE_RADIUS
+        }}
+      >
+        <Text style={{ color: "white" }}>JS</Text>
+      </Animated.View>
     );
   }
 }

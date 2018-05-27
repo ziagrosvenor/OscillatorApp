@@ -1433,7 +1433,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-  var _templateObject = _taggedTemplateLiteral(["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-top: 200px;\n  margin-bottom: 100px;\n"], ["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-top: 200px;\n  margin-bottom: 100px;\n"]);
+  var _templateObject = _taggedTemplateLiteral(["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-right: 20px;\n"], ["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-right: 20px;\n"]),
+      _templateObject2 = _taggedTemplateLiteral(["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: yellow;\n  justify-content: center;\n  align-items: center;\n  margin: 4px;\n"], ["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: yellow;\n  justify-content: center;\n  align-items: center;\n  margin: 4px;\n"]);
 
   var _reactNative = _require(_dependencyMap[2], "react-native");
 
@@ -1479,9 +1480,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   }
 
   var Band = (0, _reactNative.requireNativeComponent)("Band", null);
+  var NativeDraggableCircle = (0, _reactNative.requireNativeComponent)("DraggableCircle", null);
   var CIRCLE_RADIUS = 88;
 
   var TouchPad = _native2.default.TouchableOpacity(_templateObject, CIRCLE_RADIUS, CIRCLE_RADIUS, CIRCLE_RADIUS);
+
+  var W_CIRCLE_RADIUS = 88;
+
+  var Waveform = _native2.default.TouchableOpacity(_templateObject2, W_CIRCLE_RADIUS, W_CIRCLE_RADIUS, W_CIRCLE_RADIUS);
 
   var RNHighScores = _wrapComponent("RNHighScores")(function (_React$Component) {
     _inherits(RNHighScores, _React$Component);
@@ -1498,7 +1504,9 @@ __d(function (global, _require, module, exports, _dependencyMap) {
       }
 
       return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RNHighScores.__proto__ || Object.getPrototypeOf(RNHighScores)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-        playing: false
+        playing: false,
+        currentWaveformIdx: 1,
+        showWaveformMenu: false
       }, _this.togglePlaying = function () {
         if (_this.state.playing) {
           _GStreamerBridgeNativeModule2.default.pause();
@@ -1508,6 +1516,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
         _this.setState({
           playing: !_this.state.playing
+        });
+      }, _this.setWaveform = function (idx) {
+        _GStreamerBridgeNativeModule2.default.setWaveform(idx);
+
+        _this.setState({
+          currentWaveformIdx: idx
+        });
+      }, _this.toggleWaveformMenu = function () {
+        _this.setState({
+          showWaveformMenu: !_this.state.showWaveformMenu
         });
       }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -1521,21 +1539,100 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         var _this2 = this;
 
         var bands = [];
+        var waveforms = ["SINE", "SQUARE", "SAW", "TRIANGLE", "SILENCE", "WHITE_N", "PINK_N", "SINE_TAB", "TICKS", "GAUSSIAN", "RED_N", "BLUE_N", "VIOLET_N"];
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 20; i++) {
           bands.push(_react3.default.createElement(Band, {
             key: i,
             idx: i,
             style: {
               color: "red",
               width: 400,
-              height: 120
+              height: 640 / 10
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 48
+              lineNumber: 86
             }
           }));
+        }
+
+        waveformComponents = waveforms.map(function (name, idx) {
+          return _react3.default.createElement(
+            Waveform,
+            {
+              key: idx,
+              onPress: function onPress() {
+                return _this2.setWaveform(idx);
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 95
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                style: {
+                  fontSize: 12
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 96
+                }
+              },
+              name
+            )
+          );
+        });
+        var waveformText = this.state.showWaveformMenu ? "TOUCH" : waveforms[this.state.currentWaveformIdx];
+
+        if (this.state.showWaveformMenu) {
+          return _react3.default.createElement(
+            _reactNative.View,
+            {
+              style: styles.waveformContainer,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 106
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.View,
+              {
+                style: {
+                  top: 0,
+                  position: "absolute"
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 107
+                }
+              },
+              bands
+            ),
+            waveformComponents,
+            _react3.default.createElement(
+              TouchPad,
+              {
+                onPress: this.toggleWaveformMenu,
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 109
+                }
+              },
+              _react3.default.createElement(
+                _reactNative.Text,
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 110
+                  }
+                },
+                waveformText
+              )
+            )
+          );
         }
 
         return _react3.default.createElement(
@@ -1544,7 +1641,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             style: styles.container,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 57
+              lineNumber: 117
             }
           },
           _react3.default.createElement(
@@ -1556,10 +1653,50 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 58
+                lineNumber: 118
               }
             },
             bands
+          ),
+          _react3.default.createElement(
+            TouchPad,
+            {
+              onPress: this.togglePlaying,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 119
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 120
+                }
+              },
+              this.state.playing ? "PAUSE" : "PLAY"
+            )
+          ),
+          _react3.default.createElement(
+            TouchPad,
+            {
+              onPress: this.toggleWaveformMenu,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 122
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 123
+                }
+              },
+              waveformText
+            )
           ),
           _react3.default.createElement(_DraggableCircle2.default, {
             onPressIn: function onPressIn() {
@@ -1568,29 +1705,22 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             onMove: this.handleMove,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 59
+              lineNumber: 126
             }
           }),
-          _react3.default.createElement(
-            TouchPad,
-            {
-              onPress: this.togglePlaying,
-              __source: {
-                fileName: _jsxFileName,
-                lineNumber: 63
-              }
+          _react3.default.createElement(NativeDraggableCircle, {
+            style: {
+              backgroundColor: "black",
+              opacity: 0.5,
+              width: CIRCLE_RADIUS,
+              height: CIRCLE_RADIUS,
+              borderRadius: CIRCLE_RADIUS / 2
             },
-            _react3.default.createElement(
-              _reactNative.Text,
-              {
-                __source: {
-                  fileName: _jsxFileName,
-                  lineNumber: 64
-                }
-              },
-              this.state.playing ? "PAUSE" : "PLAY"
-            )
-          )
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 130
+            }
+          })
         );
       }
     }, {
@@ -1610,9 +1740,18 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     container: {
       flex: 1,
       padding: 200,
-      flexDirection: "column-reverse",
+      flexDirection: "row",
       justifyContent: "center",
-      alignItems: "center",
+      alignItems: "flex-end",
+      backgroundColor: "orange"
+    },
+    waveformContainer: {
+      flex: 1,
+      padding: 40,
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      flexWrap: "wrap",
+      alignItems: "flex-start",
       backgroundColor: "orange"
     },
     highScoresTitle: {

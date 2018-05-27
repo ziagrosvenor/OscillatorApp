@@ -31,7 +31,7 @@
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  UITouch *touch = [touches anyObject];
+  [[GStreamerBackend sharedInstance] play];
 }
 
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -52,6 +52,7 @@
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+  [[GStreamerBackend sharedInstance] pause];
   //  UITouch *touch = [touches anyObject];
   //  CGPoint positionInView = [touch locationInView:self];
   //  CGPoint newPosition;
