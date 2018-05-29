@@ -42,9 +42,6 @@ RCT_EXPORT_MODULE();
 
 - (instancetype)init {
   if ((self = [super init])) {
-//    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(onDisplayLink)];
-//    displayLink.frameInterval = 5;
-//    [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
     
   }
   return self;
@@ -92,6 +89,12 @@ RCT_EXPORT_METHOD(updateFreq:(nonnull NSNumber*)freq time:(nonnull NSNumber*)tim
 RCT_EXPORT_METHOD(setWaveform:(nonnull NSNumber*)idx)
 {
   [[GStreamerBackend sharedInstance] setWaveform:[idx intValue]];
+}
+
+RCT_EXPORT_METHOD(sendMessage:(NSString*)messageType
+                  message:(NSString*)message)
+{
+  [[GStreamerBackend sharedInstance] processMessage:messageType message:message];
 }
 
 // List all your events here

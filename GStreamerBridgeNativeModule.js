@@ -3,6 +3,5 @@
 import { NativeModules, NativeEventEmitter } from "react-native";
 
 const { GStreamerBridge } = NativeModules;
-const RNRippleAudioEmitter = new NativeEventEmitter(GStreamerBridge);
 
 export default GStreamerBridge;

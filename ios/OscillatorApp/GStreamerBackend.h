@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "GStreamerBackendDelegate.h"
 
+
 @interface GStreamerBackend : NSObject
 
 /* Initialization method. Pass the delegate that will take care of the UI.
@@ -17,6 +18,9 @@
 -(double) getVolume;
 -(float) getFrequencyData:(int)idx;
 -(void) setWaveform:(int)idx;
+
+-(void) processMessage:(NSString*)messageType
+               message:(NSString*)message;
 
 +(GStreamerBackend *)sharedInstance;
 

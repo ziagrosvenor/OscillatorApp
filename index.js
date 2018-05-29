@@ -41,25 +41,42 @@ const Waveform = styled.TouchableOpacity`
   align-items: center;
   margin: 4px;
 `;
-class RNHighScores extends React.Component {
+
+class OscillatorApp extends React.Component {
   state = {
-    playing: false,
+    audioEngine: {
+      isPlaying: false,
+      waveform: 1,
+      x: 200,
+      y: 200
+    },
     currentWaveformIdx: 1,
     showWaveformMenu: false,
     level: 0.3
   };
   componentDidMount() {
+    GStreamerBridge.sendMessage("INIT", JSON.stringify(this.state.audioEngine));
     GStreamerBridgeEmitter.addListener("EXAMPLE_EVENT", ({ level }) => {
       this.setState({ level: level });
     });
   }
+  play = () => {
+    const stateUpdate = { isPlaying: true };
+    GStreamerBridge.sendMessage("PLAY", JSON.stringify(stateUpdate));
+    this.setState(stateUpdate);
+  };
+  pause = () => {
+    const stateUpdate = { isPlaying: false };
+    GStreamerBridge.sendMessage("PAUSE", JSON.stringify(stateUpdate));
+    this.setState(stateUpdate);
+  };
   togglePlaying = () => {
-    if (this.state.playing) {
+    if (this.state.isPlaying) {
       GStreamerBridge.pause();
     } else {
       GStreamerBridge.play();
     }
-    this.setState({ playing: !this.state.playing });
+    this.setState({ isPlaying: !this.state.isPlaying });
   };
 
   setWaveform = idx => {
@@ -118,7 +135,7 @@ class RNHighScores extends React.Component {
             <Text>{waveformText}</Text>
           </TouchPad>
           <TouchPad onPress={this.togglePlaying}>
-            <Text>{this.state.playing ? "STOP" : "HOLD"}</Text>
+            <Text>{this.state.isPlaying ? "STOP" : "HOLD"}</Text>
           </TouchPad>
         </View>
       );
@@ -131,8 +148,8 @@ class RNHighScores extends React.Component {
           <Text>{waveformText}</Text>
         </TouchPad>
         <DraggableCircle
-          onPressIn={() => this.togglePlaying()}
-          onPressOut={() => this.togglePlaying()}
+          onPressIn={() => this.play()}
+          onPressOut={() => this.pause()}
           onMove={this.handleMove}
         />
         <NativeDraggableCircle
@@ -188,4 +205,4 @@ const styles = StyleSheet.create({
 });
 
 // Module name
-AppRegistry.registerComponent("OscillatorApp", () => RNHighScores);
+AppRegistry.registerComponent("OscillatorApp", () => OscillatorApp);

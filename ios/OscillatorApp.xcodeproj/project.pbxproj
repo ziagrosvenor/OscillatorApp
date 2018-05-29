@@ -15,7 +15,7 @@
 		180827C920B8A37C006442AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827C820B8A37C006442AD /* main.m */; };
 		180827D320B8A37C006442AD /* OscillatorAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827D220B8A37C006442AD /* OscillatorAppTests.m */; };
 		180827DE20B8A37C006442AD /* OscillatorAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827DD20B8A37C006442AD /* OscillatorAppUITests.m */; };
-		180827EC20B8A44B006442AD /* GStreamerBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 180827EB20B8A44B006442AD /* GStreamerBackend.m */; };
+		180827EC20B8A44B006442AD /* GStreamerBackend.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180827EB20B8A44B006442AD /* GStreamerBackend.mm */; };
 		180827F020B8A53C006442AD /* GStreamer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827EF20B8A53C006442AD /* GStreamer.framework */; };
 		180827F320B8A668006442AD /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827F220B8A668006442AD /* libiconv.2.tbd */; };
 		180827F520B8A6CE006442AD /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */; };
@@ -47,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1802832220BDEE0400B69250 /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		180827B620B8A379006442AD /* OscillatorApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OscillatorApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		180827B920B8A379006442AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		180827BA20B8A379006442AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,8 +64,8 @@
 		180827D920B8A37C006442AD /* OscillatorAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OscillatorAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		180827DD20B8A37C006442AD /* OscillatorAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OscillatorAppUITests.m; sourceTree = "<group>"; };
 		180827DF20B8A37C006442AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		180827EB20B8A44B006442AD /* GStreamerBackend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GStreamerBackend.m; sourceTree = "<group>"; };
-		180827ED20B8A494006442AD /* GStreamerBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GStreamerBackend.h; sourceTree = "<group>"; };
+		180827EB20B8A44B006442AD /* GStreamerBackend.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GStreamerBackend.mm; sourceTree = "<group>"; };
+		180827ED20B8A494006442AD /* GStreamerBackend.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = GStreamerBackend.h; sourceTree = "<group>"; };
 		180827EF20B8A53C006442AD /* GStreamer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GStreamer.framework; sourceTree = "<group>"; };
 		180827F120B8A586006442AD /* GStreamerBackendDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GStreamerBackendDelegate.h; sourceTree = "<group>"; };
 		180827F220B8A668006442AD /* libiconv.2.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libiconv.2.tbd; sourceTree = DEVELOPER_DIR; };
@@ -161,13 +162,14 @@
 				180827C420B8A37C006442AD /* LaunchScreen.storyboard */,
 				180827C720B8A37C006442AD /* Info.plist */,
 				180827C820B8A37C006442AD /* main.m */,
-				180827EB20B8A44B006442AD /* GStreamerBackend.m */,
+				180827EB20B8A44B006442AD /* GStreamerBackend.mm */,
 				180827ED20B8A494006442AD /* GStreamerBackend.h */,
 				180827F120B8A586006442AD /* GStreamerBackendDelegate.h */,
 				180827F920B8BD34006442AD /* GStreamerBridge.m */,
 				180827FB20B8BD3C006442AD /* GStreamerBridge.h */,
 				180827F620B8A71F006442AD /* gst_ios_init.m */,
 				180827F820B8A762006442AD /* gst_ios_init.h */,
+				1802832220BDEE0400B69250 /* json.hpp */,
 			);
 			path = OscillatorApp;
 			sourceTree = "<group>";
@@ -371,7 +373,7 @@
 				180827C920B8A37C006442AD /* main.m in Sources */,
 				180827BB20B8A379006442AD /* AppDelegate.m in Sources */,
 				1854332B20B9FD85004DC322 /* DraggableCircle.m in Sources */,
-				180827EC20B8A44B006442AD /* GStreamerBackend.m in Sources */,
+				180827EC20B8A44B006442AD /* GStreamerBackend.mm in Sources */,
 				180827F720B8A71F006442AD /* gst_ios_init.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

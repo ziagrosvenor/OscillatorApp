@@ -8,9 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-#import "GStreamerBackend.h"
-
 #include <GStreamer/gst/gst.h>
+#include "GStreamerBackend.h"
+
+#include "json.hpp"
+// for convenience
+using json = nlohmann::json;
+using std::string;
+
+namespace AudioEngine {
+  // a simple struct to model a person
+  struct state {
+    bool isPlaying;
+    int waveform;
+    int x;
+    int y;
+  };
+  
+}
+
+
 
 GST_DEBUG_CATEGORY_STATIC (debug_category);
 #define GST_CAT_DEFAULT debug_category
@@ -30,7 +47,7 @@ float spectrumData[20];
   GMainContext *context; /* GLib context used to run the main loop */
   GMainLoop *main_loop;  /* GLib main loop */
   gboolean initialized;  /* To avoid informing the UI multiple times about the initialization */
-  
+  json audioEngineStateJson;
 }
 
 /*
@@ -206,6 +223,41 @@ static void state_changed_cb (GstBus *bus, GstMessage *msg, GStreamerBackend *se
       [ui_delegate gstreamerInitialized];
     }
     initialized = TRUE;
+  }
+}
+
+-(void) processMessage:(NSString*)_messageType
+           message:(NSString*)_messageJson {
+  string messageType([_messageType UTF8String]);
+  string messageJson([_messageJson UTF8String]);
+  
+  if (messageType == "INIT") {
+    audioEngineStateJson = json::parse(messageJson);
+    return;
+  }
+  
+  json message = json::parse(messageJson);
+  
+  audioEngineStateJson.merge_patch(message);
+  
+  AudioEngine::state state {
+    audioEngineStateJson["isPlaying"].get<bool>(),
+    audioEngineStateJson["waveform"].get<int>(),
+    audioEngineStateJson["x"].get<int>(),
+    audioEngineStateJson["y"].get<int>(),
+  };
+
+  if (messageType == "PLAY") {
+    [self play];
+  } else if (messageType == "PAUSE") {
+    [self pause];
+  } else if (messageType == "UPDATE_OSC") {
+    g_object_set(source, "freq", (double)state.y, NULL);
+    g_object_set(verb, "room-size", (double)state.x, NULL);
+    g_object_set(verb, "level", (double)state.x, NULL);
+    g_object_set(eq, "band0", -(double)state.x * 12, NULL);
+    g_object_set(eq, "band2", -(state.y / 800) * 24, NULL);
+    g_object_set(volume, "volume", state.x, NULL);
   }
 }
 
