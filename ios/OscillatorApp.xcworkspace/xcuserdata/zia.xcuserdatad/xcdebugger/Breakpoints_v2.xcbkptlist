@@ -6,16 +6,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OscillatorApp/GStreamerBackend.mm"
-            timestampString = "549322721.045101"
+            filePath = "OscillatorApp/Pipeline.mm"
+            timestampString = "549409358.908151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "-processMessage:message:"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getFrequencyData(int idx)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OscillatorApp/Pipeline.mm"
+            timestampString = "549409358.908221"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "updateCoordinates(double x, double y)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

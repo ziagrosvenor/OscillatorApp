@@ -25,6 +25,7 @@
 		1854332820B9A38E004DC322 /* BandManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854332720B9A38E004DC322 /* BandManager.m */; };
 		1854332B20B9FD85004DC322 /* DraggableCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854332A20B9FD85004DC322 /* DraggableCircle.m */; };
 		1854332E20B9FE25004DC322 /* DraggableCircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854332D20B9FE25004DC322 /* DraggableCircleManager.m */; };
+		18C8E69E20BF4D8600E5A4A4 /* Pipeline.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C8E69D20BF4D8600E5A4A4 /* Pipeline.mm */; };
 		18EF106820B968F600870CB5 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 18EF106720B968F600870CB5 /* main.jsbundle */; };
 		6CA2F98EB18AC75A8B49541E /* libPods-OscillatorApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		1854332C20B9FDA4004DC322 /* DraggableCircleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraggableCircleManager.h; sourceTree = "<group>"; };
 		1854332D20B9FE25004DC322 /* DraggableCircleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraggableCircleManager.m; sourceTree = "<group>"; };
 		18B3293020B9A1D300BE1A66 /* SpectrumBand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpectrumBand.h; sourceTree = "<group>"; };
+		18C8E69D20BF4D8600E5A4A4 /* Pipeline.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Pipeline.mm; sourceTree = "<group>"; };
 		18EF106720B968F600870CB5 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../main.jsbundle; sourceTree = "<group>"; };
 		98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OscillatorApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDABE0918BFFC03E4F90AE1 /* Pods-OscillatorApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OscillatorApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OscillatorApp/Pods-OscillatorApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				180827F620B8A71F006442AD /* gst_ios_init.m */,
 				180827F820B8A762006442AD /* gst_ios_init.h */,
 				1802832220BDEE0400B69250 /* json.hpp */,
+				18C8E69D20BF4D8600E5A4A4 /* Pipeline.mm */,
 			);
 			path = OscillatorApp;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				1854332B20B9FD85004DC322 /* DraggableCircle.m in Sources */,
 				180827EC20B8A44B006442AD /* GStreamerBackend.mm in Sources */,
 				180827F720B8A71F006442AD /* gst_ios_init.m in Sources */,
+				18C8E69E20BF4D8600E5A4A4 /* Pipeline.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
