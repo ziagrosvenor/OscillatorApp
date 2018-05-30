@@ -41,7 +41,10 @@ export default class Draggable extends Component {
         this.props.onPressIn();
       },
       onPanResponderMove: (evt, gestureState) => {
-        this.setState({ x: 0 + gestureState.moveX, y: 0 + gestureState.moveY });
+        this.setState({
+          x: gestureState.moveX - CIRCLE_RADIUS,
+          y: gestureState.moveY - CIRCLE_RADIUS
+        });
         this.callOnMove({ ...gestureState });
       },
       onPanResponderRelease: () => {
