@@ -53,20 +53,6 @@
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
   [[GStreamerBackend sharedInstance] pause];
-  //  UITouch *touch = [touches anyObject];
-  //  CGPoint positionInView = [touch locationInView:self];
-  //  CGPoint newPosition;
-  //
-  //
-  //  [UIView animateWithDuration:0.4
-  //                        delay:0.0
-  //                      options:UIViewAnimationOptionCurveEaseInOut
-  //                   animations:^ {
-  //                     self.view.center = newPosition
-  //                     // to
-  //                   }
-  //                   completion:^(BOOL finished) {}];
-  //
 }
 
 - (void)onDisplayLink {

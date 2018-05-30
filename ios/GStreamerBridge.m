@@ -73,7 +73,6 @@ RCT_EXPORT_METHOD(play)
       [[NSRunLoop currentRunLoop] addTimer:self->masterPositionTimer forMode:NSRunLoopCommonModes];
     });
   }
- 
 }
 
 RCT_EXPORT_METHOD(pause)

@@ -50,7 +50,6 @@ class OscillatorApp extends React.Component {
       x: 200,
       y: 200
     },
-    currentWaveformIdx: 1,
     showWaveformMenu: false,
     level: 0.3
   };
@@ -63,12 +62,23 @@ class OscillatorApp extends React.Component {
   play = () => {
     const stateUpdate = { isPlaying: true };
     GStreamerBridge.sendMessage("PLAY", JSON.stringify(stateUpdate));
-    this.setState(stateUpdate);
+    this.setState({
+      audioEngine: { ...this.state.audioEngine, ...stateUpdate }
+    });
   };
   pause = () => {
     const stateUpdate = { isPlaying: false };
     GStreamerBridge.sendMessage("PAUSE", JSON.stringify(stateUpdate));
-    this.setState(stateUpdate);
+    this.setState({
+      audioEngine: { ...this.state.audioEngine, ...stateUpdate }
+    });
+  };
+  setWaveform = idx => {
+    const stateUpdate = { waveform: idx };
+    GStreamerBridge.sendMessage("SET_WAVEFORM", JSON.stringify(stateUpdate));
+    this.setState({
+      audioEngine: { ...this.state.audioEngine, ...stateUpdate }
+    });
   };
   togglePlaying = () => {
     if (this.state.isPlaying) {
@@ -77,11 +87,6 @@ class OscillatorApp extends React.Component {
       GStreamerBridge.play();
     }
     this.setState({ isPlaying: !this.state.isPlaying });
-  };
-
-  setWaveform = idx => {
-    GStreamerBridge.setWaveform(idx);
-    this.setState({ currentWaveformIdx: idx });
   };
 
   toggleWaveformMenu = () => {
@@ -124,7 +129,7 @@ class OscillatorApp extends React.Component {
 
     const waveformText = this.state.showWaveformMenu
       ? "TOUCH"
-      : waveforms[this.state.currentWaveformIdx];
+      : waveforms[this.state.audioEngine.waveform];
 
     if (this.state.showWaveformMenu) {
       return (

@@ -15,10 +15,10 @@
 int main(int argc, char * argv[]) {
   @autoreleasepool {
     // Setup audio session
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
-  
-    [session setActive:YES error:nil];
+      AVAudioSession *session = [AVAudioSession sharedInstance];
+      [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+      [session setActive:YES error:nil];
+    
       gst_ios_init();
       return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
   }
