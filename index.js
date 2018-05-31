@@ -4,17 +4,16 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
-  NativeEventEmitter
+  TouchableHighlight
 } from "react-native";
 
 import styled from "styled-components/native";
 
-import GStreamerBridge from "./GStreamerBridgeNativeModule";
+import GStreamerBridge, {
+  GStreamerBridgeEmitter
+} from "./GStreamerBridgeNativeModule";
 import DraggableCircle from "./DraggableCircle";
 import { requireNativeComponent } from "react-native";
-
-const GStreamerBridgeEmitter = new NativeEventEmitter(GStreamerBridge);
 
 // requireNativeComponent automatically resolves 'RNTMap' to 'RNTMapManager'
 const Band = requireNativeComponent("Band", null);
@@ -51,7 +50,7 @@ class OscillatorApp extends React.Component {
       y: 200
     },
     showWaveformMenu: false,
-    level: 0.3
+    level: 1
   };
   componentDidMount() {
     GStreamerBridge.sendMessage("INIT", JSON.stringify(this.state.audioEngine));
@@ -152,10 +151,14 @@ class OscillatorApp extends React.Component {
         <TouchPad onPress={this.toggleWaveformMenu}>
           <Text>{waveformText}</Text>
         </TouchPad>
+        <TouchPad onPress={() => GStreamerBridge.hammerBridge()}>
+          <Text>Stress</Text>
+        </TouchPad>
         <DraggableCircle
           onPressIn={() => this.play()}
           onPressOut={() => this.pause()}
           onMove={this.handleMove}
+          scale={this.state.level}
         />
         <NativeDraggableCircle
           style={{
@@ -168,7 +171,7 @@ class OscillatorApp extends React.Component {
             borderRadius: CIRCLE_RADIUS / 2
           }}
         >
-          <Text style={{ color: "white" }}>Native</Text>
+          <Text style={{ color: "white" }}>Obj-C</Text>
         </NativeDraggableCircle>
       </View>
     );

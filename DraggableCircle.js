@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { throttle } from "lodash";
 import styled from "styled-components/native";
-let CIRCLE_RADIUS = 44;
+let CIRCLE_RADIUS = 66;
 const TouchPad = styled.TouchableOpacity`
   width: ${CIRCLE_RADIUS};
   height: ${CIRCLE_RADIUS};
@@ -42,8 +42,8 @@ export default class Draggable extends Component {
       },
       onPanResponderMove: (evt, gestureState) => {
         this.setState({
-          x: gestureState.moveX - CIRCLE_RADIUS,
-          y: gestureState.moveY - CIRCLE_RADIUS
+          x: gestureState.moveX,
+          y: gestureState.moveY
         });
         this.callOnMove({ ...gestureState });
       },
@@ -58,10 +58,10 @@ export default class Draggable extends Component {
       <Animated.View
         {...this.panResponder.panHandlers}
         style={{
-          left: this.state.x,
-          top: this.state.y,
+          left: this.state.x - CIRCLE_RADIUS,
+          top: this.state.y - CIRCLE_RADIUS,
           backgroundColor: "black",
-          opacity: 0.5,
+          opacity: this.props.scale,
           position: "absolute",
           justifyContent: "center",
           alignItems: "center",

@@ -59,19 +59,20 @@ RCT_EXPORT_MODULE();
 
 // Export methods to a native module
 // https://facebook.github.io/react-native/docs/native-modules-ios.html
-RCT_EXPORT_METHOD(play)
+RCT_EXPORT_METHOD(hammerBridge)
 {
-  [[GStreamerBackend sharedInstance] play];
-  
   if (masterPositionTimer == nil) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      self->masterPositionTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
-                                                             target:self
-                                                           selector:@selector(onDisplayLink)
-                                                           userInfo:nil
-                                                            repeats:YES];
+      self->masterPositionTimer = [NSTimer scheduledTimerWithTimeInterval:.002
+                                                                   target:self
+                                                                 selector:@selector(onDisplayLink)
+                                                                 userInfo:nil
+                                                                  repeats:YES];
       [[NSRunLoop currentRunLoop] addTimer:self->masterPositionTimer forMode:NSRunLoopCommonModes];
     });
+  } else {
+    [masterPositionTimer invalidate];
+    masterPositionTimer = nil;
   }
 }
 
@@ -83,6 +84,8 @@ RCT_EXPORT_METHOD(pause)
 RCT_EXPORT_METHOD(updateFreq:(nonnull NSNumber*)freq time:(nonnull NSNumber*)time)
 {
   [[GStreamerBackend sharedInstance] updateFreq:[freq doubleValue] time:[time doubleValue]];
+  
+  
 }
 
 RCT_EXPORT_METHOD(setWaveform:(nonnull NSNumber*)idx)
@@ -137,7 +140,7 @@ RCT_EXPORT_METHOD(sendMessage:(NSString*)messageType
     level = powf(adjAmp, 1.0f / root);
   }
  
-  [self sendEventWithName: @"EXAMPLE_EVENT" body:@{@"level": [NSNumber numberWithFloat:level]}];
+  [self sendEventWithName: @"EXAMPLE_EVENT" body:@{@"level": [NSNumber numberWithFloat:level], @"level2": [NSNumber numberWithFloat:level], @"level3": [NSNumber numberWithFloat:level]}];
 }
 
 @end

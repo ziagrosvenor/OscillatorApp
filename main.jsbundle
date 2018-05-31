@@ -1431,6 +1431,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _jsxFileName = "/Users/zia/Projects/OscillatorApp/index.js";
 
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
   var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
   var _templateObject = _taggedTemplateLiteral(["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-right: 20px;\n"], ["\n  width: ", ";\n  height: ", ";\n  border-radius: ", ";\n  background-color: white;\n  justify-content: center;\n  align-items: center;\n  margin-right: 20px;\n"]),
@@ -1461,8 +1463,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
   var _components = {
-    RNHighScores: {
-      displayName: "RNHighScores"
+    OscillatorApp: {
+      displayName: "OscillatorApp"
     }
   };
 
@@ -1479,7 +1481,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     };
   }
 
-  var GStreamerBridgeEmitter = new _reactNative.NativeEventEmitter(_GStreamerBridgeNativeModule2.default);
   var Band = (0, _reactNative.requireNativeComponent)("Band", null);
   var NativeDraggableCircle = (0, _reactNative.requireNativeComponent)("DraggableCircle", null);
   var CIRCLE_RADIUS = 88;
@@ -1490,40 +1491,68 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var Waveform = _native2.default.TouchableOpacity(_templateObject2, W_CIRCLE_RADIUS, W_CIRCLE_RADIUS, W_CIRCLE_RADIUS);
 
-  var RNHighScores = _wrapComponent("RNHighScores")(function (_React$Component) {
-    _inherits(RNHighScores, _React$Component);
+  var OscillatorApp = _wrapComponent("OscillatorApp")(function (_React$Component) {
+    _inherits(OscillatorApp, _React$Component);
 
-    function RNHighScores() {
+    function OscillatorApp() {
       var _ref;
 
       var _temp, _this, _ret;
 
-      _classCallCheck(this, RNHighScores);
+      _classCallCheck(this, OscillatorApp);
 
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RNHighScores.__proto__ || Object.getPrototypeOf(RNHighScores)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-        playing: false,
-        currentWaveformIdx: 1,
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = OscillatorApp.__proto__ || Object.getPrototypeOf(OscillatorApp)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        audioEngine: {
+          isPlaying: false,
+          waveform: 1,
+          x: 200,
+          y: 200
+        },
         showWaveformMenu: false,
-        level: 0.3
+        level: 1
+      }, _this.play = function () {
+        var stateUpdate = {
+          isPlaying: true
+        };
+
+        _GStreamerBridgeNativeModule2.default.sendMessage("PLAY", JSON.stringify(stateUpdate));
+
+        _this.setState({
+          audioEngine: _extends({}, _this.state.audioEngine, stateUpdate)
+        });
+      }, _this.pause = function () {
+        var stateUpdate = {
+          isPlaying: false
+        };
+
+        _GStreamerBridgeNativeModule2.default.sendMessage("PAUSE", JSON.stringify(stateUpdate));
+
+        _this.setState({
+          audioEngine: _extends({}, _this.state.audioEngine, stateUpdate)
+        });
+      }, _this.setWaveform = function (idx) {
+        var stateUpdate = {
+          waveform: idx
+        };
+
+        _GStreamerBridgeNativeModule2.default.sendMessage("SET_WAVEFORM", JSON.stringify(stateUpdate));
+
+        _this.setState({
+          audioEngine: _extends({}, _this.state.audioEngine, stateUpdate)
+        });
       }, _this.togglePlaying = function () {
-        if (_this.state.playing) {
+        if (_this.state.isPlaying) {
           _GStreamerBridgeNativeModule2.default.pause();
         } else {
           _GStreamerBridgeNativeModule2.default.play();
         }
 
         _this.setState({
-          playing: !_this.state.playing
-        });
-      }, _this.setWaveform = function (idx) {
-        _GStreamerBridgeNativeModule2.default.setWaveform(idx);
-
-        _this.setState({
-          currentWaveformIdx: idx
+          isPlaying: !_this.state.isPlaying
         });
       }, _this.toggleWaveformMenu = function () {
         _this.setState({
@@ -1532,12 +1561,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
       }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
-    _createClass(RNHighScores, [{
+    _createClass(OscillatorApp, [{
       key: "componentDidMount",
       value: function componentDidMount() {
         var _this2 = this;
 
-        GStreamerBridgeEmitter.addListener("EXAMPLE_EVENT", function (_ref2) {
+        _GStreamerBridgeNativeModule2.default.sendMessage("INIT", JSON.stringify(this.state.audioEngine));
+
+        _GStreamerBridgeNativeModule.GStreamerBridgeEmitter.addListener("EXAMPLE_EVENT", function (_ref2) {
           var level = _ref2.level;
 
           _this2.setState({
@@ -1564,7 +1595,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 94
+              lineNumber: 115
             }
           }));
         }
@@ -1579,7 +1610,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 103
+                lineNumber: 124
               }
             },
             _react3.default.createElement(
@@ -1590,14 +1621,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 },
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 104
+                  lineNumber: 125
                 }
               },
               name
             )
           );
         });
-        var waveformText = this.state.showWaveformMenu ? "TOUCH" : waveforms[this.state.currentWaveformIdx];
+        var waveformText = this.state.showWaveformMenu ? "TOUCH" : waveforms[this.state.audioEngine.waveform];
 
         if (this.state.showWaveformMenu) {
           return _react3.default.createElement(
@@ -1606,7 +1637,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.waveformContainer,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 114
+                lineNumber: 135
               }
             },
             _react3.default.createElement(
@@ -1618,7 +1649,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 },
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 115
+                  lineNumber: 136
                 }
               },
               bands
@@ -1630,7 +1661,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 onPress: this.toggleWaveformMenu,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 117
+                  lineNumber: 138
                 }
               },
               _react3.default.createElement(
@@ -1638,7 +1669,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 {
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 118
+                    lineNumber: 139
                   }
                 },
                 waveformText
@@ -1650,7 +1681,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 onPress: this.togglePlaying,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 120
+                  lineNumber: 141
                 }
               },
               _react3.default.createElement(
@@ -1658,10 +1689,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 {
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 121
+                    lineNumber: 142
                   }
                 },
-                this.state.playing ? "STOP" : "HOLD"
+                this.state.isPlaying ? "STOP" : "HOLD"
               )
             )
           );
@@ -1673,7 +1704,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             style: styles.container,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 128
+              lineNumber: 149
             }
           },
           _react3.default.createElement(
@@ -1685,7 +1716,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 129
+                lineNumber: 150
               }
             },
             bands
@@ -1696,7 +1727,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               onPress: this.toggleWaveformMenu,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 130
+                lineNumber: 151
               }
             },
             _react3.default.createElement(
@@ -1704,23 +1735,46 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 131
+                  lineNumber: 152
                 }
               },
               waveformText
             )
           ),
+          _react3.default.createElement(
+            TouchPad,
+            {
+              onPress: function onPress() {
+                return _GStreamerBridgeNativeModule2.default.hammerBridge();
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 154
+              }
+            },
+            _react3.default.createElement(
+              _reactNative.Text,
+              {
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 155
+                }
+              },
+              "Stress"
+            )
+          ),
           _react3.default.createElement(_DraggableCircle2.default, {
             onPressIn: function onPressIn() {
-              return _this3.togglePlaying();
+              return _this3.play();
             },
             onPressOut: function onPressOut() {
-              return _this3.togglePlaying();
+              return _this3.pause();
             },
             onMove: this.handleMove,
+            scale: this.state.level,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 133
+              lineNumber: 157
             }
           }),
           _react3.default.createElement(
@@ -1728,7 +1782,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             {
               style: {
                 backgroundColor: "black",
-                opacity: this.state.level,
+                opacity: 0.5,
                 justifyContent: "center",
                 alignItems: "center",
                 width: CIRCLE_RADIUS,
@@ -1737,7 +1791,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 138
+                lineNumber: 163
               }
             },
             _react3.default.createElement(
@@ -1748,10 +1802,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 },
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 149
+                  lineNumber: 174
                 }
               },
-              "Native"
+              "Obj-C"
             )
           )
         );
@@ -1766,7 +1820,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
       }
     }]);
 
-    return RNHighScores;
+    return OscillatorApp;
   }(_react3.default.Component));
 
   var styles = _reactNative.StyleSheet.create({
@@ -1800,7 +1854,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   });
 
   _reactNative.AppRegistry.registerComponent("OscillatorApp", function () {
-    return RNHighScores;
+    return OscillatorApp;
   });
 },11,[12,22,176,493,512,513],"index.js");
 __d(function (global, _require, module, exports, _dependencyMap) {
@@ -67351,11 +67405,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
+  exports.GStreamerBridgeEmitter = undefined;
 
   var _reactNative = _require(_dependencyMap[0], "react-native");
 
   var GStreamerBridge = _reactNative.NativeModules.GStreamerBridge;
-  var RNRippleAudioEmitter = new _reactNative.NativeEventEmitter(GStreamerBridge);
+  var GStreamerBridgeEmitter = exports.GStreamerBridgeEmitter = new _reactNative.NativeEventEmitter(GStreamerBridge);
   exports.default = GStreamerBridge;
 },512,[176],"GStreamerBridgeNativeModule.js");
 __d(function (global, _require, module, exports, _dependencyMap) {
@@ -67416,7 +67471,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     };
   }
 
-  var CIRCLE_RADIUS = 44;
+  var CIRCLE_RADIUS = 66;
 
   var TouchPad = _native2.default.TouchableOpacity(_templateObject, CIRCLE_RADIUS, CIRCLE_RADIUS, CIRCLE_RADIUS);
 
@@ -67461,8 +67516,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
           },
           onPanResponderMove: function onPanResponderMove(evt, gestureState) {
             _this2.setState({
-              x: 0 + gestureState.moveX,
-              y: 0 + gestureState.moveY
+              x: gestureState.moveX,
+              y: gestureState.moveY
             });
 
             _this2.callOnMove(_extends({}, gestureState));
@@ -67479,10 +67534,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
           _reactNative.Animated.View,
           _extends({}, this.panResponder.panHandlers, {
             style: {
-              left: this.state.x,
-              top: this.state.y,
+              left: this.state.x - CIRCLE_RADIUS,
+              top: this.state.y - CIRCLE_RADIUS,
               backgroundColor: "black",
-              opacity: 0.5,
+              opacity: this.props.scale,
               position: "absolute",
               justifyContent: "center",
               alignItems: "center",
@@ -67492,7 +67547,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 55
+              lineNumber: 58
             }
           }),
           _react3.default.createElement(
@@ -67503,7 +67558,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 70
+                lineNumber: 73
               }
             },
             "JS"

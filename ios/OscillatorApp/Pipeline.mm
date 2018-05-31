@@ -198,7 +198,6 @@ public:
     gst_bin_add_many (GST_BIN (pipeline),
                       source, source2, add, conv, resample, eq, verb, volume, spectrum, sink, NULL);
     
-    
     /* Build pipeline */
     if (error) {
       gchar *message = g_strdup_printf("Unable to build pipeline: %s", error->message);
