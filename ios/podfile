@@ -1,4 +1,5 @@
 # The target name is most likely the name of your project.
+platform :ios, '9.2'
 target 'OscillatorApp' do
 
     # Your 'node_modules' directory is probably in the root of your project,

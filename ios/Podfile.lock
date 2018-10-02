@@ -1,11 +1,15 @@
 PODS:
   - boost-for-react-native (1.63.0)
+  - BVLinearGradient (2.4.2):
+    - React
   - DoubleConversion (1.1.5)
   - Folly (2016.09.26.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
   - glog (0.3.4)
+  - React (0.55.4):
+    - React/Core (= 0.55.4)
   - React/Core (0.55.4):
     - yoga (= 0.55.4.React)
   - React/CxxBridge (0.55.4):
@@ -41,6 +45,7 @@ PODS:
   - yoga (0.55.4.React)
 
 DEPENDENCIES:
+  - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/GLog.podspec`)
@@ -58,6 +63,8 @@ SPEC REPOS:
     - boost-for-react-native
 
 EXTERNAL SOURCES:
+  BVLinearGradient:
+    :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   Folly:
@@ -71,12 +78,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  BVLinearGradient: 6d8909e3fc6b089defa4b89d967441fa6827a2ee
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
   Folly: 211775e49d8da0ca658aebc8eab89d642935755c
   glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
   React: aa2040dbb6f317b95314968021bd2888816e03d5
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 8ed41414133a601d1d9d024651eafd08eae36895
+PODFILE CHECKSUM: a08d2478a5f2c76df5b5dd3a5f80ece6fb55b3a1
 
 COCOAPODS: 1.5.3
