@@ -26,7 +26,7 @@
 		1854332E20B9FE25004DC322 /* DraggableCircleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854332D20B9FE25004DC322 /* DraggableCircleManager.m */; };
 		18C8E69E20BF4D8600E5A4A4 /* Pipeline.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18C8E69D20BF4D8600E5A4A4 /* Pipeline.mm */; };
 		18EF106820B968F600870CB5 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 18EF106720B968F600870CB5 /* main.jsbundle */; };
-		5BDE4508216410030091EC18 /* GStreamer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDE4507216410030091EC18 /* GStreamer.framework */; };
+		5BDE450B2164193E0091EC18 /* GStreamer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BDE450A2164193E0091EC18 /* GStreamer.framework */; };
 		6CA2F98EB18AC75A8B49541E /* libPods-OscillatorApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +85,7 @@
 		18B3293020B9A1D300BE1A66 /* SpectrumBand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpectrumBand.h; sourceTree = "<group>"; };
 		18C8E69D20BF4D8600E5A4A4 /* Pipeline.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Pipeline.mm; sourceTree = "<group>"; };
 		18EF106720B968F600870CB5 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../main.jsbundle; sourceTree = "<group>"; };
-		5BDE4507216410030091EC18 /* GStreamer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GStreamer.framework; sourceTree = SOURCE_ROOT; };
+		5BDE450A2164193E0091EC18 /* GStreamer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GStreamer.framework; path = ../../../../Library/Developer/GStreamer/iPhone.sdk/GStreamer.framework; sourceTree = "<group>"; };
 		98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OscillatorApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABDABE0918BFFC03E4F90AE1 /* Pods-OscillatorApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OscillatorApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OscillatorApp/Pods-OscillatorApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B0456D109118F943FDF67050 /* Pods-OscillatorApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OscillatorApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-OscillatorApp/Pods-OscillatorApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BDE4508216410030091EC18 /* GStreamer.framework in Frameworks */,
+				5BDE450B2164193E0091EC18 /* GStreamer.framework in Frameworks */,
 				180827F320B8A668006442AD /* libiconv.2.tbd in Frameworks */,
 				180827F520B8A6CE006442AD /* libstdc++.6.0.9.tbd in Frameworks */,
 				6CA2F98EB18AC75A8B49541E /* libPods-OscillatorApp.a in Frameworks */,
@@ -198,7 +198,7 @@
 		180827EE20B8A4ED006442AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5BDE4507216410030091EC18 /* GStreamer.framework */,
+				5BDE450A2164193E0091EC18 /* GStreamer.framework */,
 				180827F420B8A6CE006442AD /* libstdc++.6.0.9.tbd */,
 				180827F220B8A668006442AD /* libiconv.2.tbd */,
 				98FB84BAD9DC395838725736 /* libPods-OscillatorApp.a */,
@@ -559,7 +559,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GStreamer.framework/Versions/1.0/Headers",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -569,7 +568,6 @@
 					"\"${PODS_ROOT}/Headers/Public/React\"",
 					"\"${PODS_ROOT}/Headers/Public/glog\"",
 					"\"${PODS_ROOT}/Headers/Public/yoga\"",
-					"$(PROJECT_DIR)/GStreamer.framework/Versions/1.0/Headers",
 				);
 				INFOPLIST_FILE = OscillatorApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -609,6 +607,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.uk.aimusic.RippleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = "~/Library/Developer/GStreamer/iPhone.sdk";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = "~/Library/Developer/GStreamer/iPhone.sdk/GStreamer.framework/Versions/1.0/Headers";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -633,13 +633,14 @@
 					"\"${PODS_ROOT}/Headers/Public/React\"",
 					"\"${PODS_ROOT}/Headers/Public/glog\"",
 					"\"${PODS_ROOT}/Headers/Public/yoga\"",
-					"$(PROJECT_DIR)/GStreamer.framework/Versions/1.0/Headers",
 				);
 				INFOPLIST_FILE = OscillatorApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.uk.aimusic.RippleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SYSTEM_FRAMEWORK_SEARCH_PATHS[arch=*]" = "~/Library/Developer/GStreamer/iPhone.sdk";
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = "~/Library/Developer/GStreamer/iPhone.sdk/GStreamer.framework/Versions/1.0/Headers";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

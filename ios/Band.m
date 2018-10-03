@@ -54,7 +54,7 @@
   }
   self.backgroundColor = [UIColor whiteColor];
 
-  self.center = CGPointMake(((level * 2) * 350) - 200, (750 / 10) * _idx);
+  self.center = CGPointMake(((level * 2) * 350) - 200, (750 / 15) * _idx);
   
   self.alpha = level + 0.3;
 }

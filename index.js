@@ -115,7 +115,7 @@ class OscillatorApp extends React.Component {
         <Band
           key={i}
           idx={i}
-          style={{ color: "red", width: 400, height: 640 / 10 }}
+          style={{ color: "red", width: 400, height: 640 / 15 }}
         />
       );
     }
